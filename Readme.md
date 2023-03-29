@@ -105,3 +105,9 @@ Steps
  add-migration initialcreate
  update-database
  ```
+
+### Repository pattern
+- code is cleaner, easier to resuse and maintain
+- loosly coupled system 
+- talk to your database sql server or in memory
+- easy to replace with a fake implementation for testing
