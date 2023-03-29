@@ -167,7 +167,7 @@ public string Get()
 
 ## Database Design in a Microservice
 
-### database per service
+### Database per service
 - `Recommended approach` by trainer.
 - change to a individual database doesn't impact the other
 - individual data store are easier to scale
@@ -184,6 +184,63 @@ public string Get()
 - no need to exchange stored data between microservices. api is simplified and there is no problem with consistency data and state in case the communication fails.
 - cost benefit
   
+## Communication between microservices
+- Microservice based application run distributed system on multiple processes or service
+- must interact using inter process communication using protocols such as HTTP, AMQP or binary protocol TCP
+- Synchronous - HTTP request/response messaging
+- Asynchronous - `Recommended` and extensive used.
+  - point-to-point messaging pattern with medium
+  - event driven messaging pattern pub-sub
+- gRPC based on RPC 
+
+HTTP
+
+![HTTP](docs/direct-http-communication.png)
+
+QUEUE
+
+![Queue](docs/command-interaction-with-queue.png)
+- Queue: Azure Service Bus, Topic, Storage Queue, `RabbitMQ` (used in on promise)
 
 
+### RabbitMQ 
+- message service broker
 
+
+# Docker
+ - an essentially a container management platform
+ - simplify the process of developing, running, managing, and distributing application by introducing the concept of container
+ - container standardize executable component that package application code and dependencies allowing them to run it isolated from other processes int he host operating system
+ - start, monitor, stop, scale container
+ - we treat them as process
+ - not dependent on anything outside of the container.
+ - application + dependency(including os - user kernel) = container package
+ - isolated from other container running on same OS.
+  
+### vm vs container
+- vm virtualize the hardware emulating a physical computer
+- hypervisor, the software component that virtualize the hardware and create/runs virtual machines, allows the host machine to support multiple vms by virtually sharing the resources such as memory and processing power
+- heavy packages 
+- container on other do not emulate hardware, infact they dont have an os themselves.  , sandboxes process ruins on host os isolated from other process in the operating system
+- light weight, portable , easy to distribute
+
+### docker images
+ - blue prints for containers
+ - containers are running instances fo an image
+ - images are read only template that are used to build container
+ - contain all instruction to build a docker container and include collection of files that include application code, dependencies that is required to run the application
+ - Deamon: background service running on host to manage containers
+
+Sample webapi hosted in docker
+![Start and Stop Docker](docs/2023-03-29%2016_56_52-SQLQuery6.sql%20-%20(localdb)_MSSQLLocalDB.customerdb%20(AD005_z003uuxe%20(53))%20-%20Micros.png)
+![](docs/2023-03-29%2017_04_29-.png)
+
+```cs
+docker pull rabbitmq
+```
+
+Run the image as container
+
+```
+docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3
+```
