@@ -242,5 +242,15 @@ docker pull rabbitmq
 Run the image as container
 
 ```
-docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3
+docker run -d --hostname my-rabbit --name rabbitmq-container rabbitmq:3
+
+docker run -d --hostname my-rabbit --name rabbitmq-container -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
+
+docker run -d -p 8080:15672 --hostname my-rabbit --name rabbitmq-container-port -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
+
 ```
+
+
+![](docs/RabbitMq.png)
+
+![](docs/RabbitMq2.png)
