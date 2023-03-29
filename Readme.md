@@ -106,6 +106,13 @@ Run it in the package manager console, select your project `VehicleAPI` and run 
  update-database
  ```
 
+ added new column to vehicle model and updated database with below command
+
+ ```cs
+ add-migration includedheightcolumnforvehicle
+ update-database
+ ```
+
 ### Repository pattern
 - code is cleaner, easier to reuse and maintain
 - loosely coupled system 
@@ -114,6 +121,14 @@ Run it in the package manager console, select your project `VehicleAPI` and run 
 - e.g [IVehicle](CarDrivenApp/VehicleAPI/Interface/IVehicle.cs)
 
 ### Dependency Injection
+ - AddSingleton - returns same object for each caller
+ - AddScoped - return new object for each run
+ - AddTransient 
+
+`Transient` objects are always different; a new instance is provided to every controller and every service.
+`Scoped` objects are the same within a request, but different across different requests.
+`Singleton` objects are the same for every object and every request.
+
 
 Program.cs
 ```cs
@@ -137,5 +152,38 @@ public string Get()
     return message;
 }
 ```
+
+- dont generate id for reference entity
+
+```cs
+
+    [Key]
+       [DatabaseGenerated(DatabaseGeneratedOption.None)]
+       public int Id { get; set; }
+
+``` 
+
+
+
+## Database Design in a Microservice
+
+### database per service
+- `Recommended approach` by trainer.
+- change to a individual database doesn't impact the other
+- individual data store are easier to scale
+- use can use `ployglot persistance`. sql server, mongodb, cosmosdb etc. different database technologies for different microservice
+- use circuit breaker, request pattern to ensure transaction.
+- use kubernetes services to orchestrate container or microservices
+- 0 down time with high availability and disaster recovery
+
+
+### Shared Database
+- you can use shared database as well. all microservice same database. 
+- transaction management - no need to span the transaction over the services.
+- complicated queries with joins
+- no need to exchange stored data between microservices. api is simplified and there is no problem with consistency data and state in case the communication fails.
+- cost benefit
+  
+
 
 
