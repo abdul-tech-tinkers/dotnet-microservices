@@ -1,4 +1,22 @@
-# Monolithic applications
+# Developing Microservices with .NET 6
+
+## Web Development
+
+- MVC template supported by visual studio - Model View Controller
+- UI in the mvc can be treated as microservice and can be deployed
+![ASP.NET MVC Template](docs/2023-03-29%2010_01_17-WebDevelopment%20-%20Microsoft%20Visual%20Studio.png)  
+
+- Use app.setting for configuration
+- application handler
+- http based handler
+- ASP.NET web api template to create api's
+
+### WCF Vs WebAPI
+- WCF is used for developing soap based services whereas web api is used for both soap-based and restful services
+- WCF doesn't not offer any for mvc feature, where web api supports mvc features
+- WCF supports http, udp and custom transport protocol whereas web api supports only http protocol
+
+## Monolithic applications
 - UI, Application Logic, Data Access, database
 - scaling data layer
 - updating application logic require updating entire database
@@ -10,7 +28,10 @@
 - tightly coupled, difficult to change
 
 
-# Microservices
+## Microservices
+
+`Microservices` are an architectural approach to building applications where each core function, or service, is built and deployed independently. Microservice architecture is distributed and loosely coupled, so one component’s failure won’t break the whole app. Independent components work together and communicate with well-defined API contracts. Build microservice applications to meet rapidly changing business needs and bring new functionalities to market faster.
+
 - architecture pattern for building application
 - should work with other m.service to achieve the goal of the application
 - can talk to other services
@@ -40,7 +61,8 @@
   
 ![Microservice](docs/microservices-logical.png)  
 
-[Microservice Architecture Reference](https://learn.microsoft.com/en-us/azure/architecture/microservices/)
+1. [Microservice Architecture Reference](https://learn.microsoft.com/en-us/azure/architecture/microservices/)
+1. [Microservices on Azure](https://azure.microsoft.com/en-us/solutions/microservice-applications/#solution-architectures)
 
 ### API Gateway
 - authenticate users at gateway level
@@ -66,7 +88,8 @@ Steps
  - Include entity framework nuget packages for each project
    - Microsoft.EntityFrameworkCore - core
    - Microsoft.EntityFrameworkCore.SqlServer - sql server connection
-   - Microsoft.EntityFrameworkCore.Tools - sql database migrtion
+   - Microsoft.EntityFrameworkCore.Tools - sql database migration
+   - use EF in-memory database for testing [Ef Core With InMemory Database](https://www.infoworld.com/article/3672154/how-to-use-ef-core-as-an-in-memory-database-in-asp-net-core-6.html)
 
 ![Entity Framework Core db support](docs/2023-03-28%2014_47_48-CarDrivenApp%20-%20Microsoft%20Visual%20Studio.png)
 
@@ -76,9 +99,9 @@ Steps
   Server =(localdb)\MSSQLLocalDB;database=vehiclesdb;
   optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;database=vehiclesdb;");
   ```
- ### adding migration
+ ## adding migration
 
  ```cs
- add-migration intiailcreate
+ add-migration initialcreate
  update-database
  ```
