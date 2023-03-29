@@ -73,7 +73,7 @@
 - monetize the calls
 
 
-Steps
+### Steps to create Microservice in .NET 6.0
 - Create a blank solution
 - Create webapi 
 
@@ -100,14 +100,42 @@ Steps
   optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;database=vehiclesdb;");
   ```
  ## adding migration
-
+Run it in the package manager console, select your project `VehicleAPI` and run the below command.
  ```cs
  add-migration initialcreate
  update-database
  ```
 
 ### Repository pattern
-- code is cleaner, easier to resuse and maintain
-- loosly coupled system 
+- code is cleaner, easier to reuse and maintain
+- loosely coupled system 
 - talk to your database sql server or in memory
 - easy to replace with a fake implementation for testing
+- e.g [IVehicle](CarDrivenApp/VehicleAPI/Interface/IVehicle.cs)
+
+### Dependency Injection
+
+Program.cs
+```cs
+builder.Services.AddScoped<IService, ServiceA>();
+builder.Services.AddScoped<IService, ServiceB>();
+```
+HomeController.cs
+```cs
+public HomeController(IEnumerable<IService> services)
+{
+    this._services = services;
+}
+
+[HttpGet]
+public string Get()
+{
+    // use reflection to resolve the service required at run time. 
+    // ServiceA can be read from the configuration.
+    var service = _services.First(s => s.GetType().Name == "ServiceA");
+    var message = service.SayHello();
+    return message;
+}
+```
+
+
