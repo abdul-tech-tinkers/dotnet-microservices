@@ -20,6 +20,7 @@
     - [vm vs container](#vm-vs-container)
     - [docker images](#docker-images)
     - [Gateway](#gateway)
+    - [Authentication - Security](#authentication---security)
 
 
 ## Web Development
@@ -315,7 +316,7 @@ builder.Services.AddOcelot();
 app.UseOcelot();
 ```
 
-in app.setting change
+in app.setting of gateway project -  change
 
 ```cs
 "AllowedHosts": "*",
@@ -392,3 +393,16 @@ in app.setting change
 }
 
 ```
+
+### Authentication - Security
+- Identity provider - active directory, 
+- both gateway and microservice needs to be protected
+- Auth Service - generate token and provide a token
+  - responsible for authenticating the user and generating a auth token
+  - exposes a single end point ***validate***, it generate the auth token if username/password is supplied
+  - generated token is subsequently used by the requests by the client for accessing authorized routes.
+- `JWT authentication`
+  - standard to create token
+  - encoded json object, signed with a secret key or public/private key
+  - contains *header, payload and signature*
+  
