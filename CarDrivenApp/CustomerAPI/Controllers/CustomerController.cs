@@ -1,6 +1,9 @@
 ﻿using CustomerAPI.Interfaces;
 using CustomerAPI.Model;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using RabbitMQ.Client;
+using System.Text;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,9 +35,29 @@ namespace CustomerAPI.Controllers
 
         // POST api/<CustomerController>
         [HttpPost]
-        public Task<Customer> Post([FromBody] Customer customer)
+        public async Task<Customer> Post([FromBody] Customer customer)
         {
-            return this.customer.AddCustomer(customer);
+            var _customer = await this.customer.AddCustomer(customer);
+            SendToQueue(_customer);
+
+            return _customer;
+        }
+
+        private void SendToQueue(Customer customer)
+        {
+            var factory = new ConnectionFactory
+            {
+                HostName = "localhost",
+                //Port = 15672,
+                //UserName = "guest",
+                //Password="guest"
+            };
+            var connection = factory.CreateConnection();
+            using var channel = connection.CreateModel();
+            channel.QueueDeclare("customers", exclusive: false);
+            var json = JsonConvert.SerializeObject(customer);
+            var body  = Encoding.UTF8.GetBytes(json);
+            channel.BasicPublish(exchange:"", routingKey:"customers", body: body);  
         }
 
         //// PUT api/<CustomerController>/5

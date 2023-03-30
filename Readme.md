@@ -1,5 +1,27 @@
 # Developing Microservices with .NET 6
 
+- [Developing Microservices with .NET 6](#developing-microservices-with-net-6)
+  - [Web Development](#web-development)
+    - [WCF Vs WebAPI](#wcf-vs-webapi)
+  - [Monolithic applications](#monolithic-applications)
+  - [Microservices](#microservices)
+    - [Benefits](#benefits)
+    - [API Gateway](#api-gateway)
+    - [Steps to create Microservice in .NET 6.0](#steps-to-create-microservice-in-net-60)
+  - [adding migration](#adding-migration)
+    - [Repository pattern](#repository-pattern)
+    - [Dependency Injection](#dependency-injection)
+  - [Database Design in a Microservice](#database-design-in-a-microservice)
+    - [Database per service](#database-per-service)
+    - [Shared Database](#shared-database)
+  - [Communication between microservices](#communication-between-microservices)
+    - [RabbitMQ](#rabbitmq)
+  - [Docker](#docker)
+    - [vm vs container](#vm-vs-container)
+    - [docker images](#docker-images)
+    - [Gateway](#gateway)
+
+
 ## Web Development
 
 - MVC template supported by visual studio - Model View Controller
@@ -207,21 +229,25 @@ QUEUE
 - message service broker
 
 
-# Docker
+## Docker
  - an essentially a container management platform
  - simplify the process of developing, running, managing, and distributing application by introducing the concept of container
  - container standardize executable component that package application code and dependencies allowing them to run it isolated from other processes int he host operating system
- - start, monitor, stop, scale container
+ - create, start, monitor, stop, scale container
  - we treat them as process
  - not dependent on anything outside of the container.
  - application + dependency(including os - user kernel) = container package
  - isolated from other container running on same OS.
+ - container have their own network and network port.
+ - `Kubernetes` is a tool for docker orchestration - can run on on premise and cloud. create, scale, update, etc for containers.
+
+![Kubernetes](docs/2023-03-30%2009_41_19-Kubernetes.png)
   
 ### vm vs container
 - vm virtualize the hardware emulating a physical computer
 - hypervisor, the software component that virtualize the hardware and create/runs virtual machines, allows the host machine to support multiple vms by virtually sharing the resources such as memory and processing power
 - heavy packages 
-- container on other do not emulate hardware, infact they dont have an os themselves.  , sandboxes process ruins on host os isolated from other process in the operating system
+- container on other do not emulate hardware, in fact they dont have an os themselves.  , sandboxes process ruins on host os isolated from other process in the operating system
 - light weight, portable , easy to distribute
 
 ### docker images
@@ -248,9 +274,24 @@ docker run -d --hostname my-rabbit --name rabbitmq-container -e RABBITMQ_DEFAULT
 
 docker run -d -p 8080:15672 --hostname my-rabbit --name rabbitmq-container-port -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
 
+docker run -it --rm --name rabbitmq-container -p 5672:5672 -p 15672:15762 rabbitmq:3-management 
+
 ```
+
+use port `-p 8080:15672` to map the port 8080 to rabbitmq port 15672.
 
 
 ![](docs/RabbitMq.png)
 
 ![](docs/RabbitMq2.png)
+
+
+-Install nuget package `RabbitMQ.Client` & `Newtonsoft.Json`
+
+
+### Gateway
+- api gateway is an api management tool that sits between a client and a collection of backend services.
+- Benefits
+  - Rate Limit
+  - Load Balancing
+-  
