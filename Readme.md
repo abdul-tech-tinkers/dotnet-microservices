@@ -288,10 +288,50 @@ use port `-p 8080:15672` to map the port 8080 to rabbitmq port 15672.
 
 -Install nuget package `RabbitMQ.Client` & `Newtonsoft.Json`
 
+- consumer example [](/CarDrivenApp/CustomerAPI/Controllers/CustomerController.cs)
+- receiver example [](/CarDrivenApp/ReservationAPI/Service/ReservationService.cs)
 
 ### Gateway
-- api gateway is an api management tool that sits between a client and a collection of backend services.
+- Api Gateway is an api management tool that sits between a client and a collection of backend services.
 - Benefits
-  - Rate Limit
+  - Rate Limit : no of times the service can be called.
   - Load Balancing
--  
+-  Facade to microservice and `inevitable` in microservices environment with the number of microservices growing day by day.
+-  Api gateway can also be a microservice - api gateway can also run on containers.
+-  `Ocelot` .NET compatible gateway - is to take incoming HTTP request and forward them on a downstream service, currently as another HTTP request.
+   -  routing of one request to another as s Re-Route.
+   -  open source .NET core-based api.
+   -  made especially for microservice architecture, that need unified points of entry into their systems
+   -  its light weight, fast and scalable and provides routing and authentication among many other features.
+-  gateway is usually treated as microservice. authentication can be done in a different service.
+-  install nuget package `Ocelot`
+  
+
+![Ocelot](docs/Ocelot.png)
+
+```cs
+builder.Services.AddOcelot();
+
+app.UseOcelot();
+```
+
+in app.setting change
+
+```cs
+"AllowedHosts": "*",
+ "Routes": [
+    {
+      "DownStreamPathTemplate": "/api/vehicles",
+      "DownStreamScheme": "https",
+      "DownStreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7029"
+        }
+      ],
+      "UpStreamPathTemplate": "/gateway/vehicles",
+      "UpStreamHttpMethod": [ "GET", "POST" ]
+
+    }
+  ]
+```
