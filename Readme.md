@@ -319,19 +319,76 @@ in app.setting change
 
 ```cs
 "AllowedHosts": "*",
- "Routes": [
+ {
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "Routes": [
     {
       "DownStreamPathTemplate": "/api/vehicles",
       "DownStreamScheme": "https",
       "DownStreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": "7029"
+          "Port": "7057"
         }
       ],
       "UpStreamPathTemplate": "/gateway/vehicles",
       "UpStreamHttpMethod": [ "GET", "POST" ]
-
+    },
+    {
+      "DownStreamPathTemplate": "/api/vehicles/{id}",
+      "DownStreamScheme": "https",
+      "DownStreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7057"
+        }
+      ],
+      "UpStreamPathTemplate": "/gateway/vehicles/{id}",
+      "UpStreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+    },
+    {
+      "DownStreamPathTemplate": "/api/customers",
+      "DownStreamScheme": "https",
+      "DownStreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7240"
+        }
+      ],
+      "UpStreamPathTemplate": "/gateway/customers",
+      "UpStreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownStreamPathTemplate": "/api/reservations",
+      "DownStreamScheme": "https",
+      "DownStreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7085"
+        }
+      ],
+      "UpStreamPathTemplate": "/gateway/reservations",
+      "UpStreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownStreamPathTemplate": "/api/reservations/{id}",
+      "DownStreamScheme": "https",
+      "DownStreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7085"
+        }
+      ],
+      "UpStreamPathTemplate": "/gateway/reservations/{id}",
+      "UpStreamHttpMethod": [ "PUT" ]
     }
   ]
+}
+
 ```
