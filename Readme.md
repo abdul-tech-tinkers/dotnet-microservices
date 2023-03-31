@@ -406,3 +406,6 @@ in app.setting of gateway project -  change
   - encoded json object, signed with a secret key or public/private key
   - contains *header, payload and signature*
   
+install nuget `Microsoft.IdentityModel.Tokens` & `System.IdentityModel.Tokens.Jwt`
+
+add ```builder.Services.AddAuthorization();```
