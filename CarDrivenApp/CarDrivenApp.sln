@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationAPI", "Reservati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayAPI", "GatewayAPI\GatewayAPI.csproj", "{10C64831-DE03-4BCC-A83D-BD6E84B610F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleAuthService", "VehicleAuthService\VehicleAuthService.csproj", "{A0D79728-2EE9-4269-B069-D5ED64AB0768}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{10C64831-DE03-4BCC-A83D-BD6E84B610F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10C64831-DE03-4BCC-A83D-BD6E84B610F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10C64831-DE03-4BCC-A83D-BD6E84B610F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0D79728-2EE9-4269-B069-D5ED64AB0768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D79728-2EE9-4269-B069-D5ED64AB0768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D79728-2EE9-4269-B069-D5ED64AB0768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D79728-2EE9-4269-B069-D5ED64AB0768}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
