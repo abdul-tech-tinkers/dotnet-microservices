@@ -105,6 +105,27 @@ very complex in-terms of communication between service
 |request-response  | pub-sub    | pub-sub      |
 |storage  | store and forward    | no storage      |
 
+.NET 6.0.
+ - cross platform version - linux, windows, Mac
+ - Lightweight
+ - cloud first approach
+ - support cli based development (dotnet command)
+   - dotnet new `ProjectType` [Options] -n [Name]
+   - dotnet build
+   - dotnet restore
+   - dotnet run
+   - dotnet add package
+   - support running .dll as well for console app
 
-
+```cs
+add package Microsoft.EntityFrameworkCore --version 6.0.16
+```
+- Middleware - perform before and after action even before the request reaches to controllers action method.
+  - Map
+  - UseMiddleware
+  - Use[Name]
+  - Map
+- Service and Dependency Injection
+- Configuration Providers
+- Hosting Options
 
