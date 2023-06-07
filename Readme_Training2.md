@@ -1,8 +1,10 @@
 - [Monolithic](#monolithic)
 - [SOA](#soa)
 - [Microservices](#microservices)
-    - [NetStar](#netstar)
     - [Messages](#messages)
+    - [.NET 6.0.](#net-60)
+    - [NetStar](#netstar)
+    - [WebApi](#webapi)
 
 # Monolithic
 **Disadvantages/Challenges**
@@ -64,13 +66,7 @@ very complex in-terms of communication between service
 
 ![](docs/download.png)
 
-### NetStar
-- Customer Plans Management
-- Movies Management
-- User Management
-  - register with email and gets a confirmation
-  - on register send a message to queue
-- Email Sender - serverless service azure function or aws lambda used for background job
+
 
 ### Messages
 - HTTP Based 
@@ -105,7 +101,7 @@ very complex in-terms of communication between service
 |request-response  | pub-sub    | pub-sub      |
 |storage  | store and forward    | no storage      |
 
-.NET 6.0.
+### .NET 6.0.
  - cross platform version - linux, windows, Mac
  - Lightweight
  - cloud first approach
@@ -120,12 +116,14 @@ very complex in-terms of communication between service
 ```cs
 add package Microsoft.EntityFrameworkCore --version 6.0.16
 ```
-- Middleware - perform before and after action even before the request reaches to controllers action method.
+
+**Middleware** - perform before and after action even before the request reaches to controllers action method.
   - Map
   - UseMiddleware
   - Use[Name]
   - Map
-- Service and Dependency Injection(DI)
+  
+**Service and Dependency Injection(DI)**
   - DI is an application of IoC - (inversion of controls)
   - inverse - framework will create object and give it to required class where it is used.
   - object is created by the container
@@ -146,7 +144,9 @@ add package Microsoft.EntityFrameworkCore --version 6.0.16
     - autofac support more scopes
     - scopes supported by .NET core can satisfy 99% of requirement
     - autofac support property injection as well
-- Configuration Providers
+  
+
+- **Configuration Providers**
   - legacy .NET uses App.Config & Web.Config for configuration
   - not suitable for cloud env or docker environment
   - .NET core is a cloud first approach to support CI/CD, cloud and docker based development.
@@ -154,6 +154,41 @@ add package Microsoft.EntityFrameworkCore --version 6.0.16
   - system environment variables
   - key per file
   - json configuration 
+  - ILI, XML, In Memory provider
   - cloud based - key vault or app configuration
+  - default command line and environment variables
+  - appsettings.json & appsettings.development.json
+  - **ASPNETCORE_ENVIRONMENT** variable in launchsetting.json decides the environment
+  
+    ![](docs/2023-06-07_12h28_47.png)
+    ![](docs/2023-06-07_12h44_11.png)
+
 - Hosting Options
 
+### NetStar
+- Customer Plans Management
+- Movies Management
+- User Management
+  - register with email and gets a confirmation
+  - on register send a message to queue
+- Email Sender - serverless service azure function or aws lambda used for background job
+  
+### WebApi
+   ![](docs/2023-06-07_14h37_49.png)
+- Microsoft.EntityFrameworkCore.InMemory
+-  in memory recommended for test and development purpose only
+
+Codes
+ - 200 - ok - return something with body data
+ - 201 - created - post created - might contain body - newly created record with id
+ - 204 - no content - delete is fine
+
+4XX - client mistake
+ - 404 - not found - record or resource is not found.
+ - 400 - bad request - request is not valid.
+ - 401 - unauthorized - not logged in
+ - 403 - access denied - trying to access unauthorized data.
+
+5XX - server error
+ - 500 - internal server error
+ 

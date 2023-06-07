@@ -12,11 +12,27 @@ namespace MVCApplication
             builder.Services.AddControllersWithViews();
 
             //builder.Services.AddScoped<CounterService>();
-           // builder.Services.AddScoped<DataManagerService>();
+            // builder.Services.AddScoped<DataManagerService>();
 
             builder.Services.AddScoped<CounterService>();
             builder.Services.AddScoped<DataManagerService>();
             builder.Services.AddScoped<IDatabaseManager, MongoDbManager>();
+
+            var config = builder.Configuration;
+
+            // add builder configuraiton 
+
+            var settings = new Dictionary<string, string>()
+            {
+                {"somekey","somevalue" }
+            };
+
+            builder.Configuration
+                .AddInMemoryCollection(settings)
+                .AddXmlFile("xmlsettings.xml", optional:false)
+                .AddKeyPerFile(  Path.Combine(Directory.GetCurrentDirectory(),"ConfigFiles"), optional: false)
+                .AddCommandLine(args);
+
 
             var app = builder.Build();
 
