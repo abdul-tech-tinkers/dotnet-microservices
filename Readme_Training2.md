@@ -125,7 +125,35 @@ add package Microsoft.EntityFrameworkCore --version 6.0.16
   - UseMiddleware
   - Use[Name]
   - Map
-- Service and Dependency Injection
+- Service and Dependency Injection(DI)
+  - DI is an application of IoC - (inversion of controls)
+  - inverse - framework will create object and give it to required class where it is used.
+  - object is created by the container
+  - legacy .net framework support DI with third party lib like autofac, unity or Ninject etc
+  - in .NET Core / .NET 6 DI is inbuilt
+  - constructor injection
+  - method injection - injecting the object in specific method
+  - property injection - get & set property - not supported by .NET Core
+  - DI support decouple the classes/services - reduce dependency as a service - decoupling - 
+  - .NET Core container is represented as `service collection`
+  - scope and lifetime option of the dependency
+    - Singleton  - same object for caller for every scope
+    - Scope - one request is considered as one scope, request from user A - creates object 
+    - Transient - limited scope - short lived object - always create a new and fresh object - for every request
+    - e.g A/B - main - dmsservice - counterservice (c=0, c++)
+    - do not use singleton for user specific data - use singleton for stateless object - e.g. dbservice, logger service
+    - use transient for light weight service, e.g. calculator service
+    - autofac support more scopes
+    - scopes supported by .NET core can satisfy 99% of requirement
+    - autofac support property injection as well
 - Configuration Providers
+  - legacy .NET uses App.Config & Web.Config for configuration
+  - not suitable for cloud env or docker environment
+  - .NET core is a cloud first approach to support CI/CD, cloud and docker based development.
+  - command line args
+  - system environment variables
+  - key per file
+  - json configuration 
+  - cloud based - key vault or app configuration
 - Hosting Options
 
