@@ -1,5 +1,7 @@
 # Developing Microservices with .NET 6
 
+[TRAINING 2](Readme_Training2.md)
+
 - [Developing Microservices with .NET 6](#developing-microservices-with-net-6)
   - [Web Development](#web-development)
     - [WCF Vs WebAPI](#wcf-vs-webapi)

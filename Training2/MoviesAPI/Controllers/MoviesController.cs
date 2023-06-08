@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System.Numerics;
 
 namespace MoviesAPI.Controllers
 {
+    [Authorize]
     [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
@@ -54,6 +56,7 @@ namespace MoviesAPI.Controllers
             return Ok(Movie);
         }
 
+        
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Movie))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

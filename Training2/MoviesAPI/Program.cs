@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +32,32 @@ builder.Services.AddCors(options =>
 
 });
 
-builder.Services.AddControllers().AddXmlDataContractSerializerFormatters();
+builder.Services.AddControllers(); //.AddXmlDataContractSerializerFormatters();
+
+
+builder.Services.AddAuthentication(c =>
+{
+    c.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    c.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(c =>
+    {
+        c.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = true,
+            ValidateIssuer = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration.GetValue<string>("Jwt:Issuer"),
+            ValidAudience = "MoviesAPI",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetValue<string>("Jwt:Secret")))
+        };
+    });
+
+
+
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -47,6 +75,9 @@ app.UseHttpsRedirection();
 
 //app.UseCors(); // Default policy
 app.UseCors("MyPolicy"); // named policy - can be configured at controller level as well
+
+
+app.UseAuthentication(); // use authentication.
 
 app.UseAuthorization();
 

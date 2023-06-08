@@ -5,6 +5,7 @@
     - [.NET 6.0.](#net-60)
     - [NetStar](#netstar)
     - [WebApi](#webapi)
+    - [API Gateway](#api-gateway)
 
 # Monolithic
 **Disadvantages/Challenges**
@@ -193,10 +194,19 @@ Codes
  - 500 - internal server error
 
 Cors
-  
+  - configure each service with CORS
    ![](docs/2023-06-08_12h08_12.png)
+   
 
 OpenID, OAuth 
  
- 
+ "[Header].[Payload].[Signature]"
+https://www.jwt.io
+
+### API Gateway
+ - single point of contact
+ - cache
+ - throttling and rate limit
+ - 
+
  
