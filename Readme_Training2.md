@@ -191,4 +191,12 @@ Codes
 
 5XX - server error
  - 500 - internal server error
+
+Cors
+  
+   ![](docs/2023-06-08_12h08_12.png)
+
+OpenID, OAuth 
+ 
+ 
  

@@ -55,25 +55,61 @@ namespace CustomerPlansAPI.Controllers
             }
 
             await customerPlansDbContext.AddAsync(plan);
-            customerPlansDbContext.SaveChanges();
+            await customerPlansDbContext.SaveChangesAsync();
             //return Created($"/api/Plans/{plan.Id}", plan);
             return CreatedAtAction(nameof(GetPlansById), new { id = plan.Id }, plan);
         }
 
 
         [HttpDelete("{id:int}")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> Delete(int id)
         {
             var plan = await customerPlansDbContext.Plans.FindAsync(id);
             if (plan == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             customerPlansDbContext.Plans.Remove(plan);
-            customerPlansDbContext.SaveChanges();
+            await customerPlansDbContext.SaveChangesAsync();
             return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<Plan>> Update(int id, [FromBody] Plan plan)
+        {
+            if (id != plan.Id)
+            {
+                return BadRequest();
+            }
+            TryValidateModel(plan);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var existingPlan = await customerPlansDbContext.Plans.FindAsync(id);
+            if (existingPlan == null)
+            {
+                return NotFound();
+            }
+            existingPlan.Name = plan.Name;
+            existingPlan.Description = plan.Description;
+            existingPlan.MaxDeviceSupport= plan.MaxDeviceSupport;
+            existingPlan.Features = plan.Features;
+            existingPlan.MonthlyCost = plan.MonthlyCost;
+            existingPlan.YearlyCost = plan.YearlyCost;
+            existingPlan.QuarterlyCost = plan.QuarterlyCost;
+            existingPlan.HalfYearlyCost = plan.HalfYearlyCost;
+
+            customerPlansDbContext.Update(existingPlan);
+            await customerPlansDbContext.SaveChangesAsync();
+
+            return Ok(existingPlan);
+
+
         }
     }
 }
