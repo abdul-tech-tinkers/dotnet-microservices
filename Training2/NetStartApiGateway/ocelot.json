@@ -1,0 +1,31 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7074"
+  },
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/plans",
+      "DownstreamPathTemplate": "/api/plans",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/plans/{id}",
+      "DownstreamPathTemplate": "/api/plans/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete","Put" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ]
+    }
+  ]
+}

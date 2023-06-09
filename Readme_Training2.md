@@ -5,7 +5,13 @@
     - [.NET 6.0.](#net-60)
     - [NetStar](#netstar)
     - [WebApi](#webapi)
+    - [OpenID, OAuth](#openid-oauth)
     - [API Gateway](#api-gateway)
+  - [Docker](#docker)
+    - [Virtualization](#virtualization)
+    - [Containerization](#containerization)
+  - [|Container|](#container)
+    - [Docker File](#docker-file)
 
 # Monolithic
 **Disadvantages/Challenges**
@@ -198,15 +204,151 @@ Cors
    ![](docs/2023-06-08_12h08_12.png)
    
 
-OpenID, OAuth 
+### OpenID, OAuth 
  
- "[Header].[Payload].[Signature]"
-https://www.jwt.io
+ - "[Header].[Payload].[Signature]"
+- https://www.jwt.io
 
 ### API Gateway
- - single point of contact
+**Features:**
+ - single point of contact - client can use the gateway 
  - cache
  - throttling and rate limit
- - 
+ - Mocking of api requests
+ - authentication
+ - available as cloud service in Azure, aws etc.
+ - `Ocelot` lib for creating .net api gateway's
 
- 
+## Docker
+- Containerization tool -> prepare app/db for deployment
+- Version incompatibility during deployment - framework version, nuget, npm version
+- Include the dependencies during the deployment
+- Dependencies include framework,nuget or npm package including operation system
+- `Containerization` is a process of bundling the application along with its dependencies so that entire package can be deployed together
+  
+### Virtualization
+- can support isolated environment for each app
+- virtual machine need full resource - it include os as well
+- need around 15 GB for os only
+- these allocated resources may not be used by your application
+- to run my application in isolated mode
+- over use or under use of application can happen
+- consume lot of resources - not need for the app
+- lot of time is require to setup including os, dependencies and application
+- not portable
+- virtual machine can be of any OS - windows os can have linux os
+
+### Containerization
+- instead of new virtual machine, containerize only application and its dependencies and run it as normal process- in an isolated environment
+- container = app + dependencies + os 
+- container can be created by developer - package is done by developer with no hardware resources allocated = like a compressed package
+- needs a container engine to run the container
+- one of the popular container engines is `Docker`. other include LSd, ContainerD etc.
+- os can use docker to run the container.
+- container are like application instances, can start, stop and run independently and take less time to start and stop
+- Agent OS - not a full OS- in container - its just a kernel + shell
+- kernel = interactive server engine
+- we don't allocate fixed memory or ram or cpu
+- memory allocation is done by host os
+- app communicate to agent os and then forwarded to host os. agent os just acts as agent (forward request to host os)
+- agent os - max of 150 MB
+- sdk = runtime + compiler + debugger + profiler (DevTools)
+- runtime = only runtime used for production environment - some around 120 mb
+- container contain compiled application 
+- size to too less, less than 500 mb 
+- isolated environment and more light weight
+- can be ported to other setup and machines
+- disadvantages
+  - resource request is handled by os agent - allocation is still handled by os agent
+  - you cannot run linux container on windows machine or vice-versa
+  - agent os is linux cannot talk to windows host os
+  - developing linux container on windows machine with a WSL
+  - to deploy on linux server, local dev should be done and create a image with linux os agent and deploy it to server
+  
+|Container|
+---------------
+| application |
+| Framework   |
+| Runtime     |
+| Os Agent    |
+
+WSL Commands
+```powershell
+wsl --update
+wsl -l -v
+wsl --install -d Ubuntu
+```
+- container registry is a cloud service - push your container to upload this images to container registry(known as docker) using `docker push` command
+- docker hub is a public container registry
+- server does the `docker pull` to download 
+- private container repository Azure Container Registry - ACR , ESR (aws), GCR(google)
+- Image - blue print or templated = physical file - can run the image with `docker run..` command
+  - ID
+  - Name => helloapp:1.0 (name:tag), default tag is `latest`, name cannot be duplicated
+- container - executable - the running instance , start and stop and restart - like a process
+  - ID
+  - Name
+- database/redis cache can also run as container
+- `docker build` to create the image
+-  `docker run id/name` to start container
+- `docker stop id/name` to stop the docker
+- `docker start id/name` restart the container
+- `docker rm id/name` to remove the container
+- `docker rmi id/name` to remove image
+- `docker push` - push to registry
+- `docker pull` - pull from registry
+- docker has its own network known as bridge network
+- do port mapping to map from your machine to this container bridge network
+- `docker images`
+
+```powershell
+docker run images
+docker pull sonusatjya/sample:latest
+docker run --name sonuapp -p 8050:80 --rm -d sonusathyadas/sampleapp:latest
+//rm is for removed
+docker ps //list of running the container
+docker ps -a
+```
+
+### Docker File
+ - instruction for building image
+  - create docker file and run `docker build`
+```docker
+FROM <baseImage> [as StageName]
+RUN <cmd>[args] // command run at the time of building the image
+e.g. RUN dotnet restore && dotnet build && dotnet publish
+LABEL Key value //metadata for image
+ENV key value // environment variable
+EXPOSE Port
+CMD ["CMD","arg1","arg2"] // executes when the container starts.
+ENTRYPOINT ["cmd","arg1"]
+COPY from to  //your machine to image
+```
+
+```powershell
+docker build -t sampleapp .
+```
+
+```docker
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+WORKDIR /app
+COPY *.csproj ./
+RUN dotnet restore
+COPY ./ ./
+RUN dotnet publish -c Release -o out
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+COPY --from=build-env /app/out .
+ENTRYPOINT ["dotnet", "TodoAPI-NET6.dll"]
+
+
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Password@123" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+```
+
+
+
+

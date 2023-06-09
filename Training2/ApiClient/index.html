@@ -19,7 +19,7 @@
       $(document).ready(() => {
         $("#btn1").click(() => {
           $.ajax({
-            url: "https://localhost:7064/api/Movies/GetMoviesByPage?page=1&pageSize=10",
+            url: "https://localhost:7074/api/plans",
             method: "GET",
             success: (result) => {
               console.log(result);

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CustomerPlansAPI.Migrations
 {
     [DbContext(typeof(CustomerPlansDbContext))]
-    [Migration("20230607093308_plansdbsetup")]
+    [Migration("20230608114424_plansdbsetup")]
     partial class plansdbsetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
