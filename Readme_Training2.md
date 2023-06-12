@@ -12,6 +12,7 @@
     - [Containerization](#containerization)
   - [|Container|](#container)
     - [Docker File](#docker-file)
+    - [Docker Testing on CustomerPlans API](#docker-testing-on-customerplans-api)
 
 # Monolithic
 **Disadvantages/Challenges**
@@ -242,7 +243,8 @@ Cors
 - instead of new virtual machine, containerize only application and its dependencies and run it as normal process- in an isolated environment
 - container = app + dependencies + os 
 - container can be created by developer - package is done by developer with no hardware resources allocated = like a compressed package
-- needs a container engine to run the container
+- needs a container engine to run the container.
+- **Docker** Engine is the underlying technology that runs containers
 - one of the popular container engines is `Docker`. other include LSd, ContainerD etc.
 - os can use docker to run the container.
 - container are like application instances, can start, stop and run independently and take less time to start and stop
@@ -347,6 +349,24 @@ ENTRYPOINT ["dotnet", "TodoAPI-NET6.dll"]
 
 
 docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Password@123" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2022-latest
+```
+
+### Docker Testing on CustomerPlans API
+
+```docker
+// sql server image download and run locally
+docker run -d -p 1433:1433 mcr.microsoft.com/mssql/server:2022-latest
+
+// check sql server ip and copy it in api docker environment variables
+docker inspect 
+
+// build api docker
+docker build -t customerplansapi:latest .
+
+// run api container
+docker run -p 8052:80 -d customerplansapi:latest
+
+docker run -d -p 127.0.0.1:7471:443 -p 127.0.0.1:7472:80 customerplans:1.0.0.0
 ```
 
 
