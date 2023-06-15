@@ -1,6 +1,7 @@
 # Developing Microservices with .NET 6
 
-[TRAINING 2](Readme_Training2.md)
+- [TRAINING 2](Readme_Training2.md)
+- [ASSIGNMENT ](01_Assignment/Readme.md)
 
 - [Developing Microservices with .NET 6](#developing-microservices-with-net-6)
   - [Web Development](#web-development)

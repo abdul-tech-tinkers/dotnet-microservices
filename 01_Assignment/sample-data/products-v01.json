@@ -1,0 +1,415 @@
+[{
+  "Name": "Probe Metering Assy HS Reagent",
+  "GlobalTradeItemNumber": "09910002000056",
+  "MaterialNumber": "11075751",
+  "Vendor": "Siemens DX ADC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM TNIH 100T",
+  "GlobalTradeItemNumber": "00630414006703",
+  "MaterialNumber": "10997840",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Advia ENZ 1CAL",
+  "GlobalTradeItemNumber": "00630414008967",
+  "MaterialNumber": "10916057",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Advia, Reagent wedges 70ml",
+  "GlobalTradeItemNumber": "00630414168258",
+  "MaterialNumber": "11223140",
+  "Vendor": "Siemens DX ADC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "ADVIA CHEM ISE BUFFER",
+  "GlobalTradeItemNumber": "00630414209968",
+  "MaterialNumber": "10311849",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Cuevetten-Conditioner  1X1000ml",
+  "GlobalTradeItemNumber": "00630414210025",
+  "MaterialNumber": "10311854",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "ADVIA REAGENT PROBE WASH 1 5X250",
+  "GlobalTradeItemNumber": "00630414210056",
+  "MaterialNumber": "10311856",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "ADVIA REAGENT PROBE WASH 2 5X250",
+  "GlobalTradeItemNumber": "00630414210070",
+  "MaterialNumber": "10311857",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "ADVIA REAGENT PROBE WASH 3  1 X 500",
+  "GlobalTradeItemNumber": "00630414210087",
+  "MaterialNumber": "10311858",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "ADVIA Lamp Coolant Additive",
+  "GlobalTradeItemNumber": "00630414467801",
+  "MaterialNumber": "10320912",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "ISE REFERENCE ELECTRODE",
+  "GlobalTradeItemNumber": "00630414478654",
+  "MaterialNumber": "10309465",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "ADVIA Chloride Electrode",
+  "GlobalTradeItemNumber": "00630414482330",
+  "MaterialNumber": "10309439",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "LIQUID SPECIFIC PROTEIN CALIBRATORS",
+  "GlobalTradeItemNumber": "00630414482453",
+  "MaterialNumber": "10311929",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica CH AlbP",
+  "GlobalTradeItemNumber": "00630414595825",
+  "MaterialNumber": "11097530",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica CH AlbP CAL",
+  "GlobalTradeItemNumber": "00630414597201",
+  "MaterialNumber": "11099310",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM Cor 250T",
+  "GlobalTradeItemNumber": "00630414598642",
+  "MaterialNumber": "10995537",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM Fer 450T",
+  "GlobalTradeItemNumber": "00630414598925",
+  "MaterialNumber": "10995568",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM FSH 950T",
+  "GlobalTradeItemNumber": "00630414599052",
+  "MaterialNumber": "10995581",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM FT3 300T",
+  "GlobalTradeItemNumber": "00630414599083",
+  "MaterialNumber": "10995584",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM tIgE 250T",
+  "GlobalTradeItemNumber": "00630414599373",
+  "MaterialNumber": "10995614",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM LH 550T",
+  "GlobalTradeItemNumber": "00630414599526",
+  "MaterialNumber": "10995634",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM PRL 250T",
+  "GlobalTradeItemNumber": "00630414599731",
+  "MaterialNumber": "10995655",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM PRGE 450T",
+  "GlobalTradeItemNumber": "00630414599779",
+  "MaterialNumber": "10995659",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM TSH3-UL 550T",
+  "GlobalTradeItemNumber": "00630414600178",
+  "MaterialNumber": "10995704",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IM VB12 500T",
+  "GlobalTradeItemNumber": "00630414600284",
+  "MaterialNumber": "10995715",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "ALT",
+  "GlobalTradeItemNumber": "09910001000040",
+  "MaterialNumber": "11097605",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Bilirubin, Total",
+  "GlobalTradeItemNumber": "09910001000088",
+  "MaterialNumber": "11097531",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Calcium",
+  "GlobalTradeItemNumber": "09910001000095",
+  "MaterialNumber": "11097595",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Complement C4",
+  "GlobalTradeItemNumber": "09910001000156",
+  "MaterialNumber": "11097623",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Conc.Creatinine",
+  "GlobalTradeItemNumber": "09910001000163",
+  "MaterialNumber": "11097596",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Direct Bilirubin (DBIL)",
+  "GlobalTradeItemNumber": "09910001000187",
+  "MaterialNumber": "11097532",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "GGT",
+  "GlobalTradeItemNumber": "09910001000194",
+  "MaterialNumber": "11097597",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Glucose",
+  "GlobalTradeItemNumber": "09910001000200",
+  "MaterialNumber": "11097592",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "HDLC",
+  "GlobalTradeItemNumber": "09910001000224",
+  "MaterialNumber": "11097630",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "IgG",
+  "GlobalTradeItemNumber": "09910001000248",
+  "MaterialNumber": "11097616",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "IgM",
+  "GlobalTradeItemNumber": "09910001000255",
+  "MaterialNumber": "11097620",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Lipase",
+  "GlobalTradeItemNumber": "09910001000286",
+  "MaterialNumber": "11097606",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Lithium",
+  "GlobalTradeItemNumber": "09910001000293",
+  "MaterialNumber": "11097535",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Magnesium",
+  "GlobalTradeItemNumber": "09910001000309",
+  "MaterialNumber": "11097612",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Phenobarbitol",
+  "GlobalTradeItemNumber": "09910001000323",
+  "MaterialNumber": "11097514",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Phosphorus",
+  "GlobalTradeItemNumber": "09910001000347",
+  "MaterialNumber": "11097611",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Theophylline",
+  "GlobalTradeItemNumber": "09910001000361",
+  "MaterialNumber": "11097513",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Total CO2",
+  "GlobalTradeItemNumber": "09910001000378",
+  "MaterialNumber": "11097521",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Total Protein",
+  "GlobalTradeItemNumber": "09910001000385",
+  "MaterialNumber": "11097604",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "wrCRP",
+  "GlobalTradeItemNumber": "09910001000439",
+  "MaterialNumber": "11097645",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "FSH",
+  "GlobalTradeItemNumber": "09910001000491",
+  "MaterialNumber": "10995580",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "CHEM CAL",
+  "GlobalTradeItemNumber": "09910001000569",
+  "MaterialNumber": "11099411",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "DRUG II CAL",
+  "GlobalTradeItemNumber": "09910001000613",
+  "MaterialNumber": "11099405",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "ALP_2 CAL",
+  "GlobalTradeItemNumber": "09910001000620",
+  "MaterialNumber": "11099316",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "TDM CAL",
+  "GlobalTradeItemNumber": "09910001000668",
+  "MaterialNumber": "11099439",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Rgt Probe Cleaner 2 (RPC2)",
+  "GlobalTradeItemNumber": "09910001000682",
+  "MaterialNumber": "11099313",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Rgt Probe Cleaner 1 (RPC1)",
+  "GlobalTradeItemNumber": "09910001000699",
+  "MaterialNumber": "11099312",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Rgt Probe Cleaner 4 (RPC4)",
+  "GlobalTradeItemNumber": "09910001000705",
+  "MaterialNumber": "11099309",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica CH Reaction Ring Segment",
+  "GlobalTradeItemNumber": "09910001000712",
+  "MaterialNumber": "11099326",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica CH Dilution Ring Segment",
+  "GlobalTradeItemNumber": "09910001000729",
+  "MaterialNumber": "11099327",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica CH CHK",
+  "GlobalTradeItemNumber": "09910001000736",
+  "MaterialNumber": "11099311",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica CH WBA",
+  "GlobalTradeItemNumber": "09910001000750",
+  "MaterialNumber": "11099308",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IMT Standard A",
+  "GlobalTradeItemNumber": "09910001000774",
+  "MaterialNumber": "11099304",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IMT Standard B+Salt Bridge",
+  "GlobalTradeItemNumber": "09910001000781",
+  "MaterialNumber": "11099306",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IMT Dilution Check",
+  "GlobalTradeItemNumber": "09910001000798",
+  "MaterialNumber": "11099325",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica IMT Diluent",
+  "GlobalTradeItemNumber": "09910001000804",
+  "MaterialNumber": "11099305",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica CH Wash",
+  "GlobalTradeItemNumber": "09910001000811",
+  "MaterialNumber": "11099301",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica CH Conditioner",
+  "GlobalTradeItemNumber": "09910001000828",
+  "MaterialNumber": "11099302",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica CH Cleaner",
+  "GlobalTradeItemNumber": "09910001000835",
+  "MaterialNumber": "11099303",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "Atellica CH Diluent",
+  "GlobalTradeItemNumber": "09910001000842",
+  "MaterialNumber": "11099300",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "CAL E",
+  "GlobalTradeItemNumber": "09910001000859",
+  "MaterialNumber": "10995512",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "CAL A",
+  "GlobalTradeItemNumber": "09910001000873",
+  "MaterialNumber": "10995500",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "VB12 DTT/REL KIT",
+  "GlobalTradeItemNumber": "09910001000910",
+  "MaterialNumber": "10995718",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+},{
+  "Name": "tIgE DIL",
+  "GlobalTradeItemNumber": "09910001000934",
+  "MaterialNumber": "10995616",
+  "Vendor": "Siemens DX EDC",
+  "UnitOfMeasure": ""
+}]

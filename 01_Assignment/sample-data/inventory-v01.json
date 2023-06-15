@@ -1,0 +1,107 @@
+[{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a78000000001",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-18",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a383a88400000001f",
+    "Lot": "23934270",
+    "ExpirationDate": "2021-01-23",
+    "CheckInDate": "2020-07-16",
+    "CheckOutDate": "2020-09-27",
+    "ReasonForCheckout": "Expired"
+  },{
+      "SerializedGlobalTradeItemNumber": "30165cdbc40016c0000000a4",
+      "Lot": "01372431C",
+      "ExpirationDate": "2021-08-30",
+      "CheckInDate": "2020-11-24",
+      "CheckOutDate": "2020-11-24",
+      "ReasonForCheckout": "Transfer to 3rd Party"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3814810000000025",
+    "Lot": "ns954aa",
+    "ExpirationDate": "2021-06-30",
+    "CheckInDate": "2020-07-30",
+    "CheckOutDate": "2021-06-30",
+    "ReasonForCheckout": "Expired"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a78000000002",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-09",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a78000000003",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-03",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a78000000004",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-16",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a78000000005",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-07",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a78000000006",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-02",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a78000000007",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-21",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a78000000008",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-11",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a78000000009",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-07",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a7800000000a",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-10-29",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a7800000000b",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-09",
+    "ReasonForCheckout": "Consumption"
+  },{
+    "SerializedGlobalTradeItemNumber": "3014267a3800a7800000000c",
+    "Lot": "68259041",
+    "ExpirationDate": "2021-09-02",
+    "CheckInDate": "2020-09-17",
+    "CheckOutDate": "2020-11-10",
+    "ReasonForCheckout": "Consumption"
+  }
+]
