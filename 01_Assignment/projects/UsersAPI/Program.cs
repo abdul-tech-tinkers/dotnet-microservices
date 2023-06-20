@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
 using UsersAPI.Data;
+using UsersAPI.Interface;
+using UsersAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -16,9 +19,11 @@ builder.Services.AddDbContext<UserDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnection"));
 });
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("MyPolicy", c =>
+    options.AddDefaultPolicy( c =>
     {
         c.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });

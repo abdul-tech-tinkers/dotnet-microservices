@@ -1,0 +1,5 @@
+show architecture and talk about each componet or module.
+1) Why user service and many types of users
+2) Register user and try create user with same name
+3) Generate token and try to add product items
+4) Generate token and try to add product list items

@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using UsersAPI.Interface;
 
 namespace UsersAPI.Controllers
 {
@@ -16,12 +17,12 @@ namespace UsersAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UserDbContext userDbContext;
+        private readonly IUserRepository userRepository;
         private readonly IConfiguration configuration;
 
-        public AuthController(UserDbContext userDbContext, IConfiguration configuration)
+        public AuthController(IUserRepository userRepository, IConfiguration configuration)
         {
-            this.userDbContext = userDbContext;
+            this.userRepository = userRepository;
             this.configuration = configuration;
         }
 
@@ -36,19 +37,18 @@ namespace UsersAPI.Controllers
                 if (user == null)
                     return BadRequest();
 
-                var existingUser = this.userDbContext.Users.SingleOrDefault(p => p.Name == user.Name);
+                var existingUser = await this.userRepository.FindAsync(user.Name, user.Password);
                 if (existingUser != null)
                 {
                     return new BadRequestObjectResult($"User {user.Name} Already exists");
                 }
 
-                 await this.userDbContext.Users.AddAsync(user);
-                await this.userDbContext.SaveChangesAsync();
+                var ceatedUser = await this.userRepository.CreateAsync(user);
                 var response = new RegisterResponse()
                 {
-                    Name = user.Name,
-                    Id = user.Id,
-                    UserType = user.UserType
+                    Name = ceatedUser.Name,
+                    Id = ceatedUser.Id,
+                    UserType = ceatedUser.UserType
                 };
                 return Ok(response);
 
@@ -72,7 +72,7 @@ namespace UsersAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var existingUser = await userDbContext.Users.SingleOrDefaultAsync(p => p.Name == model.Name && p.Password == model.Password);
+            var existingUser = await this.userRepository.FindAsync(model.Name, model.Password);
             if (existingUser == null)
             {
                 return NotFound();

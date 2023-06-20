@@ -6,7 +6,8 @@
     - [Inventory Management](#inventory-management)
     - [Cart Management](#cart-management)
     - [UserManagement](#usermanagement)
-    - [Redis docker setup](#redis-docker-setup)
+  - [docker setup](#docker-setup)
+    - [Redis](#redis)
     - [Reference](#reference)
 
 # Laboratory Inventory Management for Reagents and Consumables
@@ -65,8 +66,8 @@
   - support token based authentication
   - GET, Post, PUT and Delete operations of product and product item needs to be authorized with a token
   - support with simenesinternal - G0 and labmanager user
-  - SiemensInternal has privilage to add product and product items
-  - LabManager can manage product items
+  - SiemensInternal(G0 user type)has privilage to add product and product items
+  - LabManager(G1 user type) can manage product items
   - both has access to view products and product items
   - login with name and password
   - stored in a sql server
@@ -74,8 +75,9 @@
 
   ![](design.png)
 
-  ### Redis docker setup
+## docker setup
 
+### Redis
   ```docker
   docker run -d --name inventoryredis -p 6379:6379 redis
   ```
