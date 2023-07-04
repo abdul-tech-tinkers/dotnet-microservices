@@ -30,6 +30,8 @@ builder.Services.AddCors(options =>
 });
 var app = builder.Build();
 
+InitializeDatabase(app);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -44,3 +46,12 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+static void InitializeDatabase(IApplicationBuilder app)
+{
+    using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+    var database = serviceScope?.ServiceProvider?.GetService<ProductsDbContext>()?.Database;
+    database?.Migrate();
+}
+

@@ -6,8 +6,9 @@ namespace ProductsAPI.Interface
     {
         Task<Product> AddAsync(Product products);
         Task<Product> UpdateAsync(int id,Product products);
-        Task<Product> DeleteAsync(int id);
+        Task DeleteAsync(int id);
         Task<Product> GetAsync(int id);
+        Task<Product> GetAsync(string globalTradeItemNumber);
         Task<IEnumerable<Product>> GetAllAsync();
     }
 }

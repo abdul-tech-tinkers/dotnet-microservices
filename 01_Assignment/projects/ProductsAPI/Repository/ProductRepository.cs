@@ -24,9 +24,14 @@ namespace ProductsAPI.Repository
 
         }
 
-        public async Task<Product> DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var existingItem = await GetAsync(id);
+            if (existingItem != null)
+            {
+                this.dbContext.Products.Remove(existingItem);
+                await Save();
+            }
         }
 
         public async Task<IEnumerable<Product>> GetAllAsync()
@@ -37,6 +42,11 @@ namespace ProductsAPI.Repository
         public async Task<Product> GetAsync(int id)
         {
             return await dbContext.Products.FindAsync(id);
+        }
+
+        public Task<Product> GetAsync(string globalTradeItemNumber)
+        {
+            return dbContext.Products.FirstOrDefaultAsync(p=>p.GlobalTradeItemNumber.ToLower() == globalTradeItemNumber);
         }
 
         public async Task<Product> UpdateAsync(int id, Product products)

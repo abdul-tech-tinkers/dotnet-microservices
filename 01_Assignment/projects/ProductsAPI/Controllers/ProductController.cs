@@ -27,7 +27,7 @@ namespace ProductsAPI.Controllers
             return Ok(await this.productRepository.GetAllAsync());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Product))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -38,6 +38,26 @@ namespace ProductsAPI.Controllers
                 return BadRequest();
             }
             var product = await this.productRepository.GetAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
+        // GlobalTradeItemNumber
+
+        [HttpGet("{globalTradeItemNumber}")]
+        [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Product))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<IEnumerable<Product>>> Get(string globalTradeItemNumber)
+        {
+            if (string.IsNullOrEmpty(globalTradeItemNumber))
+            {
+                return BadRequest();
+            }
+            var product = await this.productRepository.GetAsync(globalTradeItemNumber);
             if (product == null)
             {
                 return NotFound();

@@ -6,8 +6,8 @@
     - [Inventory Management](#inventory-management)
     - [Cart Management](#cart-management)
     - [UserManagement](#usermanagement)
-  - [docker setup](#docker-setup)
-    - [Redis](#redis)
+  - [Pending items](#pending-items)
+    - [docker commands](#docker-commands)
     - [Reference](#reference)
 
 # Laboratory Inventory Management for Reagents and Consumables
@@ -27,7 +27,7 @@
     - Registration of product - add product to product database.
     - DeRegister product - de register product from the product catalog, the de register should not remove the product from catalog, 
     - mark the product as active or inactive based on registration or De registration 
-    - deregister should also mark the product item as checked out and no more available for usage.
+    - deregister should also mark the product item as checked out and no more available for usage.  = PENDING
   - Include a service api to support CRUD operation for products **ProductsAPI**
     - Create a product
     - Get Active Products
@@ -53,7 +53,7 @@
   - Keep track of the product items that need to be refilled in the system soon.
   - maintains the list of product items in the cart that need to be acquired and filled into the system
   - support CRUD operation on Cart item
-  - support Add, Update, Delete, Get byid, Get All, Clear All cart items, Add All to cart
+  - support Add, Update, Delete, Get by id, Get All, Clear All cart items, Add All to cart
   - Cart Item
     - Product Id 
     - quantity 
@@ -66,7 +66,7 @@
   - support token based authentication
   - GET, Post, PUT and Delete operations of product and product item needs to be authorized with a token
   - support with simenesinternal - G0 and labmanager user
-  - SiemensInternal(G0 user type)has privilage to add product and product items
+  - SiemensInternal(G0 user type)has privilege to add product and product items
   - LabManager(G1 user type) can manage product items
   - both has access to view products and product items
   - login with name and password
@@ -75,11 +75,21 @@
 
   ![](design.png)
 
-## docker setup
+## Pending items
 
-### Redis
+- seed data and add-migration in program.cs
+- deregister a product should checkout automatically with a queue 
+- login and logout with various tokens G0, G1
+- create ocelot service for api gateway
+- create docker for each api
+- create docker for sql
+- deploy on docker and test on postman
+
+### docker commands
+
   ```docker
-  docker run -d --name inventoryredis -p 6379:6379 redis
+  docker pull redis
+  docker run -d -p 6379:6379 redis
   ```
 
 
@@ -88,5 +98,6 @@
   - [Connect to a Redis container hosted in Docker from a .NET Core application](https://jeremylindsayni.wordpress.com/2016/11/24/connect-to-a-redis-container-hosted-in-docker-from-a-net-core-application/)
   - [Multiple Authentication Scheme](https://medium.com/@lucas.rafael.araujo/asp-net-core-3-1-multiple-authentication-schemes-with-jwt-c860d673a71f)
   - [Adding JWT Authentication & Authorization in ASP.NET Core](https://youtu.be/mgeuh8k3I4g)
+  - [Using Redis with ASP.NET Core, and Docker Container for Basket Microservices](https://medium.com/aspnetrun/using-redis-with-asp-net-core-and-docker-container-for-basket-microservices-715ff739186e)
 
 
