@@ -9,6 +9,7 @@ using System.Numerics;
 
 namespace ProductsAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -77,6 +78,13 @@ namespace ProductsAPI.Controllers
             {
                 return BadRequest("invalid product request");
             }
+
+            var existingProduct = await this.productRepository.GetAsync(product.GlobalTradeItemNumber);
+            if (existingProduct != null)
+            {
+                return new BadRequestObjectResult($"Product with GTIN {product.GlobalTradeItemNumber} already exists");
+            }
+
             product.IsActive = true;
             var createdProduct = await this.productRepository.AddAsync(product);
             return CreatedAtAction(nameof(Get), new { id = createdProduct.Id }, createdProduct);

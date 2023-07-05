@@ -10,9 +10,11 @@ using InventoryAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InventoryAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class InventoryController : ControllerBase
@@ -80,7 +82,7 @@ namespace InventoryAPI.Controllers
                 //read the message
                 var consume = channel.BasicConsume(queue: "products", autoAck: true, consumer: consumer);
                 Console.WriteLine(consume);
-                await Task.Delay(3000);
+                await Task.Delay(10);
             }
             catch (Exception ex)
             {
@@ -224,6 +226,11 @@ namespace InventoryAPI.Controllers
             if (productItem == null || !ModelState.IsValid)
             {
                 return BadRequest("invalid ProductItem request");
+            }
+            var existingProductItem = this.productItemsRepository.GetAsync(productItem.SerializedGlobalTradeItemNumber);
+            if (existingProductItem != null)
+            {
+                return new BadRequestObjectResult($"Product Item with {productItem.SerializedGlobalTradeItemNumber} already exists");
             }
             productItem.ReasonForCheckout = CheckoutReason.None;
             var createdProduct = await this.productItemsRepository.AddAsync(productItem);

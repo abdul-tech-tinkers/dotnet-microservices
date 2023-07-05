@@ -47,7 +47,8 @@
   - monitor inventory levels in the system with report and dashboard = PENDING
     - daily inventory status
     - expiring today or in next few days
-    - expiring in current week
+    - expired
+    - expired with reason
 
 ### Cart Management
   - Keep track of the product items that need to be refilled in the system soon.
@@ -65,7 +66,7 @@
   - operator login and logout support 
   - support token based authentication
   - GET, Post, PUT and Delete operations of product and product item needs to be authorized with a token
-  - support with simenesinternal - G0 and labmanager user
+  - support with simenesinternal - G0 and labmanager user G1
   - SiemensInternal(G0 user type)has privilege to add product and product items
   - LabManager(G1 user type) can manage product items
   - both has access to view products and product items
@@ -77,13 +78,18 @@
 
 ## Pending items
 
-- seed data and add-migration in program.cs
-- deregister a product should checkout automatically with a queue 
-- login and logout with various tokens G0, G1
+ 
+- login and logout with various tokens G0, G1  
 - create ocelot service for api gateway
 - create docker for each api
 - create docker for sql
 - deploy on docker and test on postman
+
+  - login and get the token in variable
+  - test inventory 
+  - test products
+  - test carts
+    - adding items to existing cart with create
 
 ### docker commands
 

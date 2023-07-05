@@ -1,10 +1,12 @@
 ﻿using CartsAPI.Interfaces;
 using CartsAPI.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CartsAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CartsController : ControllerBase
@@ -53,7 +55,7 @@ namespace CartsAPI.Controllers
                 return BadRequest("invalid CartItem request");
             }
             var createdCartItem = await this.cartsRepository.AddAsync(CartItem);
-            return CreatedAtAction(nameof(Get), new { id = createdCartItem.SerializedGlobalTradeItemNumber }, createdCartItem);
+            return CreatedAtAction(nameof(Get), new { serializedGlobalTradeItemNumber = createdCartItem.SerializedGlobalTradeItemNumber }, createdCartItem);
         }
 
         [HttpPut("{serializedGlobalTradeItemNumber}")]
