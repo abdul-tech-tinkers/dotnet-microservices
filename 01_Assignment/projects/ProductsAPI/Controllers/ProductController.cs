@@ -14,10 +14,12 @@ namespace ProductsAPI.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductRepository productRepository;
+        private readonly IMessageSender messageSender;
 
-        public ProductController(IProductRepository productRepository)
+        public ProductController(IProductRepository productRepository, IMessageSender messageSender)
         {
             this.productRepository = productRepository;
+            this.messageSender = messageSender;
         }
 
         [HttpGet]
@@ -105,7 +107,7 @@ namespace ProductsAPI.Controllers
             return Ok(UpdatedProduct);
         }
 
-        [HttpPost("{id}")]
+        [HttpPost("{id}", Name ="De Register Product")]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Product))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -118,6 +120,10 @@ namespace ProductsAPI.Controllers
             }
             existingProduct.IsActive = false;
             var UpdatedProduct = await this.productRepository.UpdateAsync(existingProduct.Id, existingProduct);
+
+            // send the product details to queue to mark the inventory as CheckoutReason as RemovedFromSystem
+            this.messageSender.SendProductMessage("products", UpdatedProduct.GlobalTradeItemNumber);
+
             return Ok(UpdatedProduct);
         }
     }

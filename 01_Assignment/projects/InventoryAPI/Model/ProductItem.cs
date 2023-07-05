@@ -25,6 +25,8 @@ namespace InventoryAPI.Model
 
 
         public DateTime CheckOutDate { get; set; } = DateTime.MinValue;
+
+        public string ProductId { get; set; } // GlobalTradeItemNumber
     }
     public enum CheckoutReason
     {

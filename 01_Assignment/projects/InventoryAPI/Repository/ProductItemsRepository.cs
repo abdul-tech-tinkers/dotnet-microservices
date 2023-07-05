@@ -40,9 +40,19 @@ namespace InventoryAPI.Repository
             return await dbContext.ProductItems.FindAsync(id);
         }
 
+        public IQueryable<ProductItem> FindAsync(System.Linq.Expressions.Expression<Func<ProductItem, bool>> predicate)
+        {
+            return dbContext.ProductItems.Where(predicate);
+        }
+
+        public Task<ProductItem> GetByProductIdAsync(string productId)
+        {
+            return dbContext.ProductItems.FirstOrDefaultAsync(p => p.ProductId.ToLower() == productId.ToLower());
+        }
+
         public Task<ProductItem> GetAsync(string serializedGlobalTradeItemNumber)
         {
-            return dbContext.ProductItems.FirstOrDefaultAsync(p => p.SerializedGlobalTradeItemNumber.ToLower() == serializedGlobalTradeItemNumber);
+            return dbContext.ProductItems.FirstOrDefaultAsync(p => p.SerializedGlobalTradeItemNumber.ToLower() == serializedGlobalTradeItemNumber.ToLower());
         }
 
         public async Task<ProductItem> UpdateAsync(int id, ProductItem productItem)

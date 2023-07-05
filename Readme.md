@@ -280,6 +280,9 @@ docker run -d -p 8080:15672 --hostname my-rabbit --name rabbitmq-container-port 
 
 docker run -it --rm --name rabbitmq-container -p 5672:5672 -p 15672:15762 rabbitmq:3-management 
 
+
+docker run — rm -it -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:latest
+
 ```
 
 use port `-p 8080:15672` to map the port 8080 to rabbitmq port 15672.

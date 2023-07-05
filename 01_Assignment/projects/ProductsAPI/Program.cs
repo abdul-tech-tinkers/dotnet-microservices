@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ProductsAPI.Data;
 using ProductsAPI.Interface;
+using ProductsAPI.Messaging;
 using ProductsAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Services.AddDbContext<ProductsDbContext>(options =>
 });
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IMessageSender, MessageSender>();
 
 builder.Services.AddCors(options =>
 {

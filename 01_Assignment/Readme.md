@@ -27,7 +27,7 @@
     - Registration of product - add product to product database.
     - DeRegister product - de register product from the product catalog, the de register should not remove the product from catalog, 
     - mark the product as active or inactive based on registration or De registration 
-    - deregister should also mark the product item as checked out and no more available for usage.  = PENDING
+    - deregister should also mark the product item as checked out and no more available for usage.
   - Include a service api to support CRUD operation for products **ProductsAPI**
     - Create a product
     - Get Active Products
@@ -44,7 +44,7 @@
     - expiry
     - lost and not found
     - leakage
-  - monitor inventory levels in the system with report and dashboard
+  - monitor inventory levels in the system with report and dashboard = PENDING
     - daily inventory status
     - expiring today or in next few days
     - expiring in current week
@@ -90,6 +90,13 @@
   ```docker
   docker pull redis
   docker run -d -p 6379:6379 redis
+  
+
+  // rabbitmq
+  
+  docker pull rabbitmq:3-management
+  docker run -d --hostname my-rabbit --name product-rabbit-queue -p 8080:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management 
+
   ```
 
 

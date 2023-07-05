@@ -94,5 +94,16 @@ namespace CartsAPI.Controllers
             await this.cartsRepository.DeleteAsync(existingCartItem.SerializedGlobalTradeItemNumber);
             return NoContent();
         }
+
+        [HttpDelete()]
+        public async Task<ActionResult> RemoveAllCartItems()
+        {
+            var existingCartItem = await this.cartsRepository.GetAllAsync();
+            foreach(var item in existingCartItem)
+            {
+                await this.cartsRepository.DeleteAsync(item.SerializedGlobalTradeItemNumber);
+            }
+            return NoContent();
+        }
     }
 }

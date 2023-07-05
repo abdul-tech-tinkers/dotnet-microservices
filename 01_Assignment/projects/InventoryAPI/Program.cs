@@ -1,7 +1,12 @@
 using InventoryAPI.Data;
 using InventoryAPI.Interfaces;
 using InventoryAPI.Repository;
+using Microsoft.AspNetCore.Connections;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +23,7 @@ builder.Services.AddDbContext<ProductItemsDbContext>(options =>
 });
 
 var app = builder.Build();
-
+InitializeDatabase(app);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -34,10 +39,10 @@ app.MapControllers();
 
 app.Run();
 
+
 static void InitializeDatabase(IApplicationBuilder app)
 {
     using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
     var database = serviceScope?.ServiceProvider?.GetService<ProductItemsDbContext>()?.Database;
     database?.Migrate();
 }
-
