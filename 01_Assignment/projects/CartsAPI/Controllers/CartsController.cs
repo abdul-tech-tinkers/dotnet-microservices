@@ -54,6 +54,15 @@ namespace CartsAPI.Controllers
             {
                 return BadRequest("invalid CartItem request");
             }
+
+            var existingCart = await this.cartsRepository.GetAsync(CartItem.SerializedGlobalTradeItemNumber);
+            if (CartItem != null)
+            {
+                existingCart.Quantity += CartItem.Quantity;
+                await this.cartsRepository.UpdateAsync(existingCart.SerializedGlobalTradeItemNumber, existingCart);
+                return CreatedAtAction(nameof(Get), new { serializedGlobalTradeItemNumber = existingCart.SerializedGlobalTradeItemNumber }, existingCart);
+            }
+
             var createdCartItem = await this.cartsRepository.AddAsync(CartItem);
             return CreatedAtAction(nameof(Get), new { serializedGlobalTradeItemNumber = createdCartItem.SerializedGlobalTradeItemNumber }, createdCartItem);
         }

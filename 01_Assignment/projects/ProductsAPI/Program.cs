@@ -53,6 +53,7 @@ builder.Services.AddAuthentication(c =>
         };
     });
 
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
