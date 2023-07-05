@@ -210,7 +210,7 @@ namespace InventoryAPI.Controllers
                 return BadRequest();
             }
             var ProductItem = await this.productItemsRepository.GetAsync(serializedGlobalTradeItemNumber);
-            if (ProductItem == null)
+            if (ProductItem == null)    
             {
                 return NotFound();
             }

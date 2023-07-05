@@ -88,8 +88,10 @@
   - login and get the token in variable
   - test inventory 
   - test products
+    - only G0 user is allowed to create, delete and update product
   - test carts
     - adding items to existing cart with create
+  - 
 
 ### docker commands
 
