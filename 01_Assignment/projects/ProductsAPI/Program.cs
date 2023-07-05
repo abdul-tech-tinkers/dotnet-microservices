@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ProductsAPI.Data;
+using ProductsAPI.Identity;
 using ProductsAPI.Interface;
 using ProductsAPI.Messaging;
 using ProductsAPI.Repository;
@@ -53,7 +54,10 @@ builder.Services.AddAuthentication(c =>
         };
     });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(IdentityData.G0_PolicyName, p => p.RequireClaim(IdentityData.UserTypeClaim, IdentityData.Go_PolicyValue));
+});
 
 var app = builder.Build();
 

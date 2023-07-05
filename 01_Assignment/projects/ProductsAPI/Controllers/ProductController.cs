@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ProductsAPI.Identity;
 using ProductsAPI.Interface;
 using ProductsAPI.Model;
 using System.Numerics;
@@ -68,6 +69,7 @@ namespace ProductsAPI.Controllers
             return Ok(product);
         }
 
+        [Authorize(Policy = IdentityData.G0_PolicyName)]
         [HttpPost]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Product))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -91,6 +93,7 @@ namespace ProductsAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Policy = IdentityData.G0_PolicyName)]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Product))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -115,7 +118,8 @@ namespace ProductsAPI.Controllers
             return Ok(UpdatedProduct);
         }
 
-        [HttpPost("{id}", Name ="De Register Product")]
+        [HttpPost("{id}", Name = "De Register Product")]
+        [Authorize(Policy = IdentityData.G0_PolicyName)]
         [ProducesResponseType(statusCode: StatusCodes.Status200OK, Type = typeof(Product))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
