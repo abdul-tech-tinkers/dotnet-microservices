@@ -77,10 +77,6 @@
   ![](design.png)
 
 ## Pending items
-
- 
-- login and logout with various tokens G0, G1  
-- create ocelot service for api gateway
 - create docker for each api
 - create docker for sql
 - deploy on docker and test on postman
@@ -101,10 +97,13 @@
   
 
   // rabbitmq
-  
   docker pull rabbitmq:3-management
   docker run -d --hostname my-rabbit --name product-rabbit-queue -p 8080:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management 
 
+
+  docker images
+  docker ps -a
+  docker inspect [containername/id]
   ```
 
 
