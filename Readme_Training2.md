@@ -366,7 +366,7 @@ docker build -t customerplansapi:latest .
 // run api container
 docker run -p 8052:80 -d customerplansapi:latest
 
-docker run -d -p 127.0.0.1:7471:443 -p 127.0.0.1:7472:80 customerplans:1.0.0.0
+  docker run -d -p 127.0.0.1:7471:443 -p 127.0.0.1:7472:80 customerplans:1.0.0.0
 ```
 
 

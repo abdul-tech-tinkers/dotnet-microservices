@@ -104,6 +104,12 @@
   docker images
   docker ps -a
   docker inspect [containername/id]
+  
+  docker rm [containerid]
+
+
+ docker build -t cartsapi:latest .
+ docker run -d -p 127.0.0.1:7471:443 -p 127.0.0.1:7472:80 cartsapi:latest
   ```
 
 

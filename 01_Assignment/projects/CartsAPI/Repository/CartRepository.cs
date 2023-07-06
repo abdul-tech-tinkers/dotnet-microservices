@@ -10,11 +10,13 @@ namespace CartsAPI.Repository
     public class CartRepository : ICartRepository
     {
         private readonly IDistributedCache distributedCache;
+        private readonly IConfiguration configuration;
         private readonly IConnectionMultiplexer connectionMultiplexer;
 
-        public CartRepository(IDistributedCache distributedCache)
+        public CartRepository(IDistributedCache distributedCache, IConfiguration configuration)
         {
             this.distributedCache = distributedCache;
+            this.configuration = configuration;
             //this.connectionMultiplexer = connectionMultiplexer;
         }
         public async Task<CartItem> AddAsync(CartItem cartItem)
@@ -41,9 +43,10 @@ namespace CartsAPI.Repository
         public async Task<List<string>> GetAllkeys()
         {
             List<string> listKeys = new List<string>();
-            using (ConnectionMultiplexer redis = await ConnectionMultiplexer.ConnectAsync("localhost:6379,allowAdmin=true"))
+            var connectionString = configuration.GetConnectionString("RedisConnection");
+            using (ConnectionMultiplexer redis = await ConnectionMultiplexer.ConnectAsync($"{connectionString},allowAdmin=true"))
             {
-                var keys = redis.GetServer("localhost", 6379).Keys();
+                var keys = redis.GetServer(connectionString).Keys();
                 listKeys.AddRange(keys.Select(key => (string)key).ToList());
 
             }
