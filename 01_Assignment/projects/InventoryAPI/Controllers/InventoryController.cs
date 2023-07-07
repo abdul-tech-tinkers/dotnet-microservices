@@ -40,16 +40,21 @@ namespace InventoryAPI.Controllers
         {
             try
             {
+                var hostName = this.configuration.GetValue<string>("RabbitmqQueue:HostName");
+                var userName = this.configuration.GetValue<string>("RabbitmqQueue:UserName");
+                var password = this.configuration.GetValue<string>("RabbitmqQueue:Password");
+                var queueName = this.configuration.GetValue<string>("RabbitmqQueue:ProductsQueueName");
+
                 var factory = new ConnectionFactory
                 {
-                    HostName = "localhost",
+                    HostName = hostName,
                     //Port = 8080,
-                    UserName = "user",
-                    Password = "password"
+                    UserName = userName,
+                    Password = password
                 };
                 using var connection = factory.CreateConnection();
                 using var channel = connection.CreateModel();
-                channel.QueueDeclare("products", exclusive: false);
+                channel.QueueDeclare(queueName, exclusive: false);
 
                 var consumer = new EventingBasicConsumer(channel);
                 consumer.Received += async (model, eventarg) =>
