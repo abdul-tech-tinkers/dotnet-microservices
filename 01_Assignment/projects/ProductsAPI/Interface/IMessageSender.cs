@@ -2,6 +2,6 @@
 {
     public interface IMessageSender
     {
-        public void SendProductMessage<T>(string queueName, T message);
+        public void SendProductMessage<T>(string hostname, string username, string password, string queueName, T message);
     }
 }

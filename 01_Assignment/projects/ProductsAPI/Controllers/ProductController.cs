@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using ProductsAPI.Identity;
 using ProductsAPI.Interface;
 using ProductsAPI.Model;
+using System.Net;
 using System.Numerics;
 
 namespace ProductsAPI.Controllers
@@ -17,11 +18,13 @@ namespace ProductsAPI.Controllers
     {
         private readonly IProductRepository productRepository;
         private readonly IMessageSender messageSender;
+        private readonly IConfiguration configuration;
 
-        public ProductController(IProductRepository productRepository, IMessageSender messageSender)
+        public ProductController(IProductRepository productRepository, IMessageSender messageSender, IConfiguration configuration)
         {
             this.productRepository = productRepository;
             this.messageSender = messageSender;
+            this.configuration = configuration;
         }
 
         [HttpGet]
@@ -125,18 +128,30 @@ namespace ProductsAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Product>> DeRegisterProduct(int id)
         {
-            var existingProduct = await this.productRepository.GetAsync(id);
-            if (existingProduct == null)
+            try
             {
-                return new BadRequestObjectResult($"Product {id} not found");
+                var existingProduct = await this.productRepository.GetAsync(id);
+                if (existingProduct == null)
+                {
+                    return new BadRequestObjectResult($"Product {id} not found");
+                }
+                existingProduct.IsActive = false;
+                var UpdatedProduct = await this.productRepository.UpdateAsync(existingProduct.Id, existingProduct);
+
+                var hostName = this.configuration.GetValue<string>("RabbitmqQueue:HostName");
+                var userName = this.configuration.GetValue<string>("RabbitmqQueue:UserName");
+                var password = this.configuration.GetValue<string>("RabbitmqQueue:Password");
+                var queueName = this.configuration.GetValue<string>("RabbitmqQueue:ProductsQueueName");
+
+                // send the product details to queue to mark the inventory as CheckoutReason as RemovedFromSystem
+                this.messageSender.SendProductMessage(hostName, userName, password, queueName, UpdatedProduct.GlobalTradeItemNumber);
+
+                return Ok(UpdatedProduct);
             }
-            existingProduct.IsActive = false;
-            var UpdatedProduct = await this.productRepository.UpdateAsync(existingProduct.Id, existingProduct);
-
-            // send the product details to queue to mark the inventory as CheckoutReason as RemovedFromSystem
-            this.messageSender.SendProductMessage("products", UpdatedProduct.GlobalTradeItemNumber);
-
-            return Ok(UpdatedProduct);
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex);
+            }
         }
     }
 }

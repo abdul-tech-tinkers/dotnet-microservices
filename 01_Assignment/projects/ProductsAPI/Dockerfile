@@ -20,4 +20,10 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENV ConnectionStrings:SqlServerConnection="Server=172.17.0.4;Database=inventoryproductdb;User Id=sa;Password=Password@123;"
+
+ENV RabbitmqQueue:HostName="172.17.0.2"
+ENV RabbitmqQueue:UserName="user"
+ENV RabbitmqQueue:Password="password"
+ENV RabbitmqQueue:ProductsQueueName="products"
+
 ENTRYPOINT ["dotnet", "ProductsAPI.dll"]

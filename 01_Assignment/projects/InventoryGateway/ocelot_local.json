@@ -1,17 +1,17 @@
 {
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:7218"
+    "BaseUrl": "https://localhost:7218"
   },
   "Routes": [
     {
       "UpstreamPathTemplate": "/api/Product",
       "DownstreamPathTemplate": "/api/Product",
       "UpstreamHttpMethod": [ "Get", "Post" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.6",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7076
         }
       ]
     },
@@ -19,11 +19,11 @@
       "UpstreamPathTemplate": "/api/Product/{id}",
       "DownstreamPathTemplate": "/api/Product/{id}",
       "UpstreamHttpMethod": [ "Post", "Get", "Delete", "Put" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.6",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7076
         }
       ]
     },
@@ -31,11 +31,11 @@
       "UpstreamPathTemplate": "/api/Product/{globalTradeItemNumber}",
       "DownstreamPathTemplate": "/api/Product/{globalTradeItemNumber}",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.6",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7076
         }
       ]
     },
@@ -43,11 +43,11 @@
       "UpstreamPathTemplate": "/api/Inventory",
       "DownstreamPathTemplate": "/api/Inventory",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.7",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7232
         }
       ]
     },
@@ -55,11 +55,11 @@
       "UpstreamPathTemplate": "/api/Inventory/{id}",
       "DownstreamPathTemplate": "/api/Inventory/{id}",
       "UpstreamHttpMethod": [ "Get", "Delete", "Put" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.7",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7232
         }
       ]
     },
@@ -67,11 +67,11 @@
       "UpstreamPathTemplate": "/api/Inventory/{serializedGlobalTradeItemNumber }",
       "DownstreamPathTemplate": "/api/Inventory/{serializedGlobalTradeItemNumber }",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.7",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7076
         }
       ]
     },
@@ -79,11 +79,11 @@
       "UpstreamPathTemplate": "/api/Inventory/GetDailyInventoryStatus",
       "DownstreamPathTemplate": "/api/Inventory/GetDailyInventoryStatus",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.7",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7232
         }
       ]
     },
@@ -92,11 +92,11 @@
       "UpstreamPathTemplate": "/api/Inventory/GetExpiredProductItems",
       "DownstreamPathTemplate": "/api/Inventory/GetExpiredProductItems",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.7",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7232
         }
       ]
     },
@@ -104,11 +104,11 @@
       "UpstreamPathTemplate": "/api/Inventory/GetExpiredProductItemsWithReason/{reason}",
       "DownstreamPathTemplate": "/api/Inventory/GetExpiredProductItemsWithReason/{reason}",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.7",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7232
         }
       ]
     },
@@ -116,11 +116,11 @@
       "UpstreamPathTemplate": "/api/Inventory/GetProductItemExpiryInDays/{days}",
       "DownstreamPathTemplate": "/api/Inventory/GetProductItemExpiryInDays/{days}",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.7",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7232
         }
       ]
     },
@@ -128,11 +128,11 @@
       "UpstreamPathTemplate": "/api/Inventory/checkin",
       "DownstreamPathTemplate": "/api/Inventory/checkin",
       "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.7",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7232
         }
       ]
     },
@@ -140,11 +140,11 @@
       "UpstreamPathTemplate": "/api/Inventory/checkout",
       "DownstreamPathTemplate": "/api/Inventory/checkout",
       "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.7",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7232
         }
       ]
     },
@@ -152,11 +152,11 @@
       "UpstreamPathTemplate": "/api/Carts",
       "DownstreamPathTemplate": "/api/Carts",
       "UpstreamHttpMethod": [ "Get", "Post", "Delete" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.8",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7041
         }
       ]
     },
@@ -164,11 +164,11 @@
       "UpstreamPathTemplate": "/api/Carts/{serializedGlobalTradeItemNumber}",
       "DownstreamPathTemplate": "/api/Carts/{serializedGlobalTradeItemNumber}",
       "UpstreamHttpMethod": [ "Get", "Post", "Delete" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.8",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7041
         }
       ]
     },
@@ -176,11 +176,11 @@
       "UpstreamPathTemplate": "/api/Auth",
       "DownstreamPathTemplate": "/api/Auth",
       "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.5",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7000
         }
       ]
     },
@@ -189,11 +189,11 @@
       "UpstreamPathTemplate": "/api/Auth/login",
       "DownstreamPathTemplate": "/api/Auth/login",
       "UpstreamHttpMethod": [ "Post" ],
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.5",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7000
         }
       ]
     }

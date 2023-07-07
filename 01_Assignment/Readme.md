@@ -8,6 +8,7 @@
     - [UserManagement](#usermanagement)
   - [Pending items](#pending-items)
     - [docker commands](#docker-commands)
+    - [Scenarios for demo](#scenarios-for-demo)
     - [Reference](#reference)
 
 # Laboratory Inventory Management for Reagents and Consumables
@@ -77,8 +78,7 @@
   ![](design.png)
 
 ## Pending items
-- create docker for each api
-- create docker for sql
+  
 - deploy on docker and test on postman
 
   - login and get the token in variable
@@ -111,6 +111,15 @@
  docker build -t cartsapi:latest .
  docker run -d -p 127.0.0.1:7471:443 -p 127.0.0.1:7472:80 cartsapi:latest
   ```
+
+  ### Scenarios for demo
+   - architecture and requirement assumptions
+   - register and logout, what is G0, G1 user privilages
+   - product (CRUD)
+   - inventory (CRUD) and dashboard api
+   - CART list (CRUD)- redis cache
+   - Rabbit MQ demo
+  
 
 
   ### Reference

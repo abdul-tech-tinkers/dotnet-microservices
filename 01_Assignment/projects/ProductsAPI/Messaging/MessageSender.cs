@@ -7,16 +7,16 @@ namespace ProductsAPI.Messaging
 {
     public class MessageSender : IMessageSender
     {
-        public void SendProductMessage<T>(string queueName, T message)
+        public void SendProductMessage<T>(string hostname, string username, string password, string queueName, T message)
         {
             try
             {
                 var factory = new ConnectionFactory
                 {
-                    HostName = "localhost",
+                    HostName = hostname,
                     //Port = 8080,
-                    UserName = "user",
-                    Password = "password"
+                    UserName = username,
+                    Password = password
                 };
                 var connection = factory.CreateConnection();
                 using var channel = connection.CreateModel();
@@ -27,6 +27,7 @@ namespace ProductsAPI.Messaging
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 throw;
             }
         }
