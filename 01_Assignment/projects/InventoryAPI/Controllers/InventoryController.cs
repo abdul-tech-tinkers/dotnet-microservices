@@ -186,7 +186,7 @@ namespace InventoryAPI.Controllers
             {
                 return BadRequest();
             }
-            var ProductItem = this.productItemsRepository.FindAsync(p => p.ExpirationDate.Date >= DateTime.Now.AddDays(days - 1).Date && p.ReasonForCheckout == CheckoutReason.None);
+            var ProductItem = this.productItemsRepository.FindAsync(p => p.ExpirationDate.Date == DateTime.Now.AddDays(days - 1).Date && p.ReasonForCheckout == CheckoutReason.None);
             var result = new List<ProductItem>();
             if (ProductItem != null)
             {
@@ -232,7 +232,7 @@ namespace InventoryAPI.Controllers
             {
                 return BadRequest("invalid ProductItem request");
             }
-            var existingProductItem = this.productItemsRepository.GetAsync(productItem.SerializedGlobalTradeItemNumber);
+            var existingProductItem =await productItemsRepository.GetAsync(productItem.SerializedGlobalTradeItemNumber);
             if (existingProductItem != null)
             {
                 return new BadRequestObjectResult($"Product Item with {productItem.SerializedGlobalTradeItemNumber} already exists");

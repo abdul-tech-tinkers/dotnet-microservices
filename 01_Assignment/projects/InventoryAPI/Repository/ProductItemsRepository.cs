@@ -52,7 +52,7 @@ namespace InventoryAPI.Repository
 
         public Task<ProductItem> GetAsync(string serializedGlobalTradeItemNumber)
         {
-            return dbContext.ProductItems.FirstOrDefaultAsync(p => p.SerializedGlobalTradeItemNumber.ToLower() == serializedGlobalTradeItemNumber.ToLower());
+            return dbContext.ProductItems.FirstOrDefaultAsync(p => p.SerializedGlobalTradeItemNumber == serializedGlobalTradeItemNumber);
         }
 
         public async Task<ProductItem> UpdateAsync(int id, ProductItem productItem)
