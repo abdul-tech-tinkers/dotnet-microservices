@@ -56,7 +56,7 @@ namespace CartsAPI.Controllers
             }
 
             var existingCart = await this.cartsRepository.GetAsync(CartItem.SerializedGlobalTradeItemNumber);
-            if (CartItem != null)
+            if (existingCart != null)
             {
                 existingCart.Quantity += CartItem.Quantity;
                 await this.cartsRepository.UpdateAsync(existingCart.SerializedGlobalTradeItemNumber, existingCart);
