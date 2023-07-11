@@ -6,6 +6,7 @@
     - [Inventory Management](#inventory-management)
     - [Cart Management](#cart-management)
     - [UserManagement](#usermanagement)
+    - [Tech Stack](#tech-stack)
   - [Pending items](#pending-items)
     - [docker commands](#docker-commands)
     - [Scenarios for demo](#scenarios-for-demo)
@@ -77,18 +78,19 @@
 
   ![](design.png)
 
+### Tech Stack
+ **Server**
+ - Asp.NET core web api using .NET 6
+ - Entity Framework Core 6
+ - RabbitMq for messaging
+ - Redis cache for cart storage
+**Client:**
+ - React
+ - 
+
+
 ## Pending items
   
-- deploy on docker and test on postman
-
-  - login and get the token in variable
-  - test inventory 
-  - test products
-    - only G0 user is allowed to create, delete and update product
-  - test carts
-    - adding items to existing cart with create
-  - 
-
 ### docker commands
 
   ```docker
