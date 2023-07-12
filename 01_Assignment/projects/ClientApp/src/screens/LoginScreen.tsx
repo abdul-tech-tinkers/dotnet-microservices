@@ -7,6 +7,7 @@ import AppText from "../components/AppText";
 import AppFormInput from "../components/forms/AppFormInput";
 import AppSubmitButton from "../components/forms/AppSubmitButton";
 import useLogin from "../hooks/useLogin";
+
 import { User } from "../services/auth/LoginService";
 import AppErrorMessage from "../components/forms/AppErrorMessage";
 import { useState } from "react";
@@ -21,24 +22,25 @@ const initialValues: User = {
   password: "",
 };
 const LoginScreen = () => {
-  const useLoginMuation = useLogin();
-  const [isLoginFailed, setIsLoginFailed] = useState<boolean>(false);
+  const userLogin = useLogin();
+  const [loginFailed, setLoginFailed] = useState<boolean>(false);
 
-  const handleSubmit = async (values, action) => {
+  const handleSubmit = async (values, actions) => {
     try {
       const user: User = {
         name: values.name,
         password: values.password,
       };
-      const response = await useLoginMuation.mutateAsync(user);
+      const response = await userLogin.mutateAsync(user);
       if (response) {
         console.log(response?.token);
-        setIsLoginFailed(false);
+        setLoginFailed(false);
       } else {
-        setIsLoginFailed(true);
+        setLoginFailed(true);
+        actions.resetForm(initialValues);
       }
     } catch (error) {
-      console.log(`handle submit err:${error}`);
+      console.log(`submit err:${error}`);
     }
   };
 
@@ -51,7 +53,6 @@ const LoginScreen = () => {
           validationSchema={validationSchema}
         >
           <AppText fontSize="2xl">Siemens Operator Login</AppText>
-
           <AppFormInput
             placeholder="User Name"
             name="name"
@@ -64,7 +65,7 @@ const LoginScreen = () => {
             type="password"
             icon={<MdOutlineLock />}
           ></AppFormInput>
-          <AppErrorMessage visible={isLoginFailed}>
+          <AppErrorMessage visible={loginFailed}>
             Invalid Login, Please retry.
           </AppErrorMessage>
           <AppSubmitButton>Login</AppSubmitButton>

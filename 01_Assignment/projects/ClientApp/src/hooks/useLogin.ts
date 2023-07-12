@@ -7,7 +7,6 @@ interface LoginResponse {
 const useLogin = () => {
   return useMutation<LoginResponse, Error, User>({
     mutationFn: LoginService.post,
-  }
-  );
+  });
 };
 export default useLogin;
