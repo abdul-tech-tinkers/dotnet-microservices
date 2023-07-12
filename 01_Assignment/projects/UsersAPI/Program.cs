@@ -31,8 +31,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
 InitializeDatabase(app);
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -42,6 +42,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

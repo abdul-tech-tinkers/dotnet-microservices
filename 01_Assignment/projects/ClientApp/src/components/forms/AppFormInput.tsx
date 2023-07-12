@@ -2,6 +2,7 @@ import React from "react";
 import { useFormikContext } from "formik";
 import AppInput from "../AppInput";
 import AppErrorMessage from "./AppErrorMessage";
+import { Container, Flex, VStack } from "@chakra-ui/react";
 
 interface props {
   name: string;
@@ -14,7 +15,7 @@ const AppFormInput = ({ name, icon, placeholder, type }: props) => {
     useFormikContext();
 
   return (
-    <>
+    <VStack marginY={5} alignItems="start">
       <AppInput
         value={values[name]}
         onBlur={() => setFieldTouched(name)}
@@ -23,8 +24,8 @@ const AppFormInput = ({ name, icon, placeholder, type }: props) => {
         placeholder={placeholder}
         type={type}
       ></AppInput>
-      <AppErrorMessage visible={touched[name]} >{errors[name]}</AppErrorMessage>
-    </>
+      <AppErrorMessage visible={touched[name]}>{errors[name]}</AppErrorMessage>
+    </VStack>
   );
 };
 

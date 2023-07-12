@@ -13,7 +13,7 @@ const AppInput = ({
   ...rest
 }: props) => {
   return (
-    <InputGroup marginY={5} borderRadius={20}>
+    <InputGroup borderRadius={20}>
       {icon && <InputLeftElement>{icon}</InputLeftElement>}
       <Input type={type} placeholder={placeholder} size="md" {...rest} />
     </InputGroup>
