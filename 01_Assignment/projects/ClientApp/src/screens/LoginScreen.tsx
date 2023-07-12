@@ -11,6 +11,7 @@ import useLogin from "../hooks/useLogin";
 import { User } from "../services/auth/LoginService";
 import AppErrorMessage from "../components/forms/AppErrorMessage";
 import { useState } from "react";
+import AuthStorage from "../services/auth/AuthStorage";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(8).label("User Name"),
@@ -33,7 +34,7 @@ const LoginScreen = () => {
       };
       const response = await userLogin.mutateAsync(user);
       if (response) {
-        console.log(response?.token);
+        AuthStorage.storeToken(response.token);
         setLoginFailed(false);
       } else {
         setLoginFailed(true);
