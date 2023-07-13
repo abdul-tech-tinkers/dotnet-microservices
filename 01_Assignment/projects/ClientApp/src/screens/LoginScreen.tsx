@@ -1,5 +1,5 @@
 import { MdPerson2, MdOutlineLock } from "react-icons/md";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Spinner } from "@chakra-ui/react";
 import * as Yup from "yup";
 
 import AppForm from "../components/forms/AppForm";
@@ -8,10 +8,10 @@ import AppFormInput from "../components/forms/AppFormInput";
 import AppSubmitButton from "../components/forms/AppSubmitButton";
 import useLogin from "../hooks/useLogin";
 
+import AuthService from "../services/auth/AuthService";
 import { User } from "../services/auth/LoginService";
 import AppErrorMessage from "../components/forms/AppErrorMessage";
 import { useState } from "react";
-import AuthStorage from "../services/auth/AuthStorage";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(8).label("User Name"),
@@ -24,24 +24,22 @@ const initialValues: User = {
 };
 const LoginScreen = () => {
   const userLogin = useLogin();
+  const authService = AuthService();
   const [loginFailed, setLoginFailed] = useState<boolean>(false);
 
   const handleSubmit = async (values, actions) => {
-    try {
-      const user: User = {
-        name: values.name,
-        password: values.password,
-      };
-      const response = await userLogin.mutateAsync(user);
-      if (response) {
-        AuthStorage.storeToken(response.token);
-        setLoginFailed(false);
-      } else {
-        setLoginFailed(true);
-        actions.resetForm(initialValues);
-      }
-    } catch (error) {
-      console.log(`submit err:${error}`);
+    const user: User = {
+      name: values.name,
+      password: values.password,
+    };
+    const response = await userLogin.mutateAsync(user);
+
+    if (response) {
+      authService.logIn(response.token);
+      setLoginFailed(false);
+    } else {
+      setLoginFailed(true);
+      actions.resetForm(initialValues);
     }
   };
 
@@ -69,7 +67,12 @@ const LoginScreen = () => {
           <AppErrorMessage visible={loginFailed}>
             Invalid Login, Please retry.
           </AppErrorMessage>
-          <AppSubmitButton>Login</AppSubmitButton>
+          <AppSubmitButton
+            isLoading={userLogin.isLoading}
+            loadingText="Logging In"
+          >
+            Login
+          </AppSubmitButton>
         </AppForm>
       </Box>
     </Flex>

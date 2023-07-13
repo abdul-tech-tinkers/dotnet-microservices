@@ -6,6 +6,7 @@ interface LoginResponse {
 }
 const useLogin = () => {
   return useMutation<LoginResponse, Error, User>({
+    mutationKey: "login",
     mutationFn: LoginService.post,
   });
 };
