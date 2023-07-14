@@ -12,6 +12,7 @@ import AuthService from "../services/auth/AuthService";
 import { User } from "../services/auth/LoginService";
 import AppErrorMessage from "../components/forms/AppErrorMessage";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(8).label("User Name"),
@@ -26,6 +27,7 @@ const LoginScreen = () => {
   const userLogin = useLogin();
   const authService = AuthService();
   const [loginFailed, setLoginFailed] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
     const user: User = {
@@ -37,6 +39,7 @@ const LoginScreen = () => {
     if (response) {
       authService.logIn(response.token);
       setLoginFailed(false);
+      navigate("home");
     } else {
       setLoginFailed(true);
       actions.resetForm(initialValues);
