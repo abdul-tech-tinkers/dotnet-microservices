@@ -13,10 +13,10 @@ interface props {
 const AppMenuItem = ({ icon, text, selected = false, onSelected }: props) => {
   return (
     <HStack
+      width="100%"
       _hover={{ cursor: "pointer" }}
       onClick={() => onSelected(text)}
-      w="100vh"
-      py={2}
+      p={2}
       bg={selected === true ? "yellow.600" : "transparent"}
     >
       <Box>{icon}</Box>

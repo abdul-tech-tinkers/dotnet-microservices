@@ -34,9 +34,9 @@ const menuItems: menuItem[] = [
 const NavigationScreen = () => {
   const [selectedMenu, setSelectedMenu] = useState("Dashboard");
   return (
-    <VStack marginY={5} paddingLeft={2} alignItems="flex-start">
+    <VStack marginY={5} alignItems="flex-start">
       <Center>
-        <AppText fontStyle="bold" fontSize="24px">
+        <AppText fontStyle="bold" px={2} fontSize="24px">
           Inventory Management
         </AppText>
       </Center>

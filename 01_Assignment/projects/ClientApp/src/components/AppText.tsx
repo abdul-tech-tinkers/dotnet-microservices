@@ -6,12 +6,8 @@ interface props extends ComponentProps<"Text"> {
   color: string;
   children: React.ReactNode;
 }
-const AppText = ({ children, color = colors.white, ...rest }: props) => {
-  return (
-    <Text color={color} {...rest}>
-      {children}
-    </Text>
-  );
+const AppText = ({ children, ...rest }: props) => {
+  return <Text {...rest}>{children}</Text>;
 };
 
 export default AppText;

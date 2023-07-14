@@ -1,6 +1,7 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import React from "react";
 import NavigationScreen from "./NavigationScreen";
+import HeaderScreen from "./HeaderScreen";
 
 const HomeScreen = () => {
   return (
@@ -13,8 +14,8 @@ const HomeScreen = () => {
       templateRows="45px 1fr auto"
       templateColumns="175px 1fr"
     >
-      <GridItem bg="orange.300" area={"header"}>
-        Header
+      <GridItem area={"header"}>
+        <HeaderScreen />
       </GridItem>
       <GridItem area={"nav"}>
         <NavigationScreen />
