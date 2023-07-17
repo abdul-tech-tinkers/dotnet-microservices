@@ -10,8 +10,12 @@ import {
 import { MdShoppingCart, MdAccountCircle, MdLogout } from "react-icons/md";
 import AppColorSwitch from "../components/AppColorSwitch";
 import AppText from "../components/AppText";
+import AuthStorage from "../services/auth/AuthStorage";
+import AuthService from "../services/auth/AuthService";
+import { useNavigate } from "react-router-dom";
 
 const HeaderScreen = () => {
+  const navigate = useNavigate();
   return (
     <Flex justifyContent="space-between" alignItems="center">
       <Box>
@@ -37,7 +41,15 @@ const HeaderScreen = () => {
           ></MenuButton>
           <MenuList>
             <MenuItem>Lab Manager</MenuItem>
-            <MenuItem icon={<MdLogout />}>Logout</MenuItem>
+            <MenuItem
+              icon={<MdLogout />}
+              onClick={() => {
+                AuthService().logOut;
+                navigate("/");
+              }}
+            >
+              Logout
+            </MenuItem>
           </MenuList>
         </Menu>
       </Flex>

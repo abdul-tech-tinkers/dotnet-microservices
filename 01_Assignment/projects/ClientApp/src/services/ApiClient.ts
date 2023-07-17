@@ -1,4 +1,5 @@
 import axiosInstance from "./AxoisInstance";
+import AuthStorage from "./auth/AuthStorage";
 
 class ApiClient<T> {
   endpoint: string;
@@ -14,15 +15,25 @@ class ApiClient<T> {
   };
 
   getAll = async () => {
+    const authToken = AuthStorage.getToken();
     console.log(`get all from ApiClientClass ${this.endpoint}`);
-    const res = await axiosInstance.get<T[]>(this.endpoint);
+    const res = await axiosInstance.get<T[]>(this.endpoint, {
+      headers: {
+        Authorization: authToken ? `Bearer ${authToken}` : "",
+      },
+    });
     return res.data;
   };
 
   post = async (data: T) => {
     try {
       console.log(`posting data ${this.endpoint}`);
-      const res = await axiosInstance.post<T>(this.endpoint, data);
+      const authToken = AuthStorage.getToken();
+      const res = await axiosInstance.post<T>(this.endpoint, data, {
+        headers: {
+          Authorization: authToken ? `Bearer ${authToken}` : "",
+        },
+      });
       return res.data;
     } catch (error) {
       console.error(error);

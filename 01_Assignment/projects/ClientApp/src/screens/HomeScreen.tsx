@@ -2,6 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import React, { useState } from "react";
 import NavigationScreen from "./NavigationScreen";
 import HeaderScreen from "./HeaderScreen";
+import ProductListScreen from "./Products/ProductListScreen";
 
 const HomeScreen = () => {
   const [selectedMenu, setSelectedMenu] = useState("Dashboard");
@@ -22,7 +23,7 @@ const HomeScreen = () => {
         <NavigationScreen onSelected={(item) => setSelectedMenu(item)} />
       </GridItem>
       <GridItem area={"Main"}>
-        Main
+        <ProductListScreen />
       </GridItem>
     </Grid>
   );
