@@ -1,3 +1,6 @@
+docker build -t inventorygateway:1.0 .
+docker run -p 7161:80 -p 7162:443 inventorygateway:1.0
+
 
 build carts api
 docker build -t cartsapi:1.0 .

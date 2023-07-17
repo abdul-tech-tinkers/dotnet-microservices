@@ -4,10 +4,11 @@ import {
   MdShoppingCart,
   MdInventory2,
 } from "react-icons/md";
-import { Center, VStack } from "@chakra-ui/react";
+import { Center, Image, VStack } from "@chakra-ui/react";
 import AppText from "../components/AppText";
 import AppMenuItem from "../components/AppMenuItem";
 import { useState } from "react";
+import logo from "../assets/X0000_Siemens_Healthineers_logo.webp";
 
 interface menuItem {
   icon: React.ReactNode;
@@ -31,21 +32,27 @@ const menuItems: menuItem[] = [
     text: "Cart Items",
   },
 ];
-const NavigationScreen = () => {
+
+interface props {
+  onSelected: (text: string) => void;
+}
+const NavigationScreen = ({ onSelected }: props) => {
   const [selectedMenu, setSelectedMenu] = useState("Dashboard");
   return (
-    <VStack marginY={5} alignItems="flex-start">
+    <VStack alignItems="flex-start">
       <Center>
-        <AppText fontStyle="bold" px={2} fontSize="24px">
-          Inventory Management
-        </AppText>
+        <Image src={logo} />
       </Center>
       {menuItems?.map((menuItem) => (
         <AppMenuItem
+          key={menuItem.text}
           icon={menuItem.icon}
           text={menuItem.text}
           selected={selectedMenu === menuItem.text ? true : false}
-          onSelected={(text) => setSelectedMenu(text)}
+          onSelected={(text) => {
+            setSelectedMenu(text);
+            onSelected(text);
+          }}
         />
       ))}
     </VStack>
