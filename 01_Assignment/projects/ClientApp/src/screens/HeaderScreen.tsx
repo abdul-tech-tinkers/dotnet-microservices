@@ -13,6 +13,7 @@ import AppText from "../components/AppText";
 import AuthStorage from "../services/auth/AuthStorage";
 import AuthService from "../services/auth/AuthService";
 import { useNavigate } from "react-router-dom";
+import AppIconButton from "../components/AppIconButton";
 
 const HeaderScreen = () => {
   const navigate = useNavigate();
@@ -24,11 +25,10 @@ const HeaderScreen = () => {
         </AppText>
       </Box>
       <Flex alignItems="center" mr={2} mt={2}>
-        <IconButton
-          aria-label="Shopping Cart"
-          variant="unstyled"
+        <AppIconButton
+          aria_label="Shopping Cart"
           icon={<MdShoppingCart size={25} />}
-        ></IconButton>
+        />
 
         <AppColorSwitch />
 

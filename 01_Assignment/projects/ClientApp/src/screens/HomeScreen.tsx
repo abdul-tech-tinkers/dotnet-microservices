@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import NavigationScreen from "./NavigationScreen";
 import HeaderScreen from "./HeaderScreen";
 import ProductListScreen from "./Products/ProductListScreen";
+import ProductTabScreen from "./Products/ProductTabScreen";
 
 const HomeScreen = () => {
   const [selectedMenu, setSelectedMenu] = useState("Dashboard");
@@ -23,7 +24,7 @@ const HomeScreen = () => {
         <NavigationScreen onSelected={(item) => setSelectedMenu(item)} />
       </GridItem>
       <GridItem area={"Main"}>
-        <ProductListScreen />
+        <ProductTabScreen />
       </GridItem>
     </Grid>
   );
