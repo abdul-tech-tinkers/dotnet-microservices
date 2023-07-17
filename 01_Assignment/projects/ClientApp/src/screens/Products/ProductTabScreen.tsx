@@ -2,6 +2,7 @@ import { Tabs, Tab, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
 import React from "react";
 import ProductListScreen from "./ProductListScreen";
 import AppText from "../../components/AppText";
+import CreateProductScreen from "./CreateProductScreen";
 
 const ProductTabScreen = () => {
   return (
@@ -17,7 +18,7 @@ const ProductTabScreen = () => {
           <ProductListScreen />
         </TabPanel>
         <TabPanel>
-          <p>two!</p>
+          <CreateProductScreen />
         </TabPanel>
       </TabPanels>
     </Tabs>

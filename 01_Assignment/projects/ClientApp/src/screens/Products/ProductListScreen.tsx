@@ -67,7 +67,7 @@ const ProductListScreen = () => {
       >
         Products
       </AppText>
-      <DataTable columns={productColums} data={data} />;
+      <DataTable columns={productColums} data={data} />
     </VStack>
   );
 };

@@ -4,25 +4,27 @@ import AppInput from "../AppInput";
 import AppErrorMessage from "./AppErrorMessage";
 import { Container, Flex, VStack } from "@chakra-ui/react";
 
-interface props {
+interface props extends ComponentProps<"AppInput"> {
   name: string;
   icon?: React.ReactNode;
   placeholder: string;
   type: string;
 }
-const AppFormInput = ({ name, icon, placeholder, type }: props) => {
+const AppFormInput = ({ name, icon, placeholder, type, ...rest }: props) => {
   const { setFieldTouched, setFieldValue, errors, touched, values } =
     useFormikContext();
 
   return (
     <VStack marginY={5} alignItems="start">
       <AppInput
+        width="100%"
         value={values[name]}
         onBlur={() => setFieldTouched(name)}
         onChange={(event) => setFieldValue(name, event.target.value)}
         icon={icon}
         placeholder={placeholder}
         type={type}
+        {...rest}
       ></AppInput>
       <AppErrorMessage visible={touched[name]}>{errors[name]}</AppErrorMessage>
     </VStack>
