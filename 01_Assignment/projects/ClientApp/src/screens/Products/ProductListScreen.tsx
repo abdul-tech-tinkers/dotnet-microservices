@@ -7,9 +7,25 @@ import * as colors from "../../config/colors";
 import AppText from "../../components/AppText";
 import { Spinner, VStack } from "@chakra-ui/react";
 import AppErrorMessage from "../../components/forms/AppErrorMessage";
+import useDeRegisterProduct from "../../hooks/useDeRegisterProduct";
+import { useState } from "react";
 
 const ProductListScreen = () => {
-  const { data, isLoading, error } = useGetProducts();
+  const { data, isLoading, error, refetch } = useGetProducts();
+  const [productId, setProductId] = useState("");
+
+  const deregister = useDeRegisterProduct(productId);
+  const OnMarkInActive = async (id: string) => {
+    console.log(`trying to deregister product ${id}`);
+    try {
+      setProductId(id);
+      await deregister.mutateAsync();
+      await refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const productColumnHelper = createColumnHelper<Product>();
   const productColums = [
     productColumnHelper.accessor("id", {
@@ -50,7 +66,10 @@ const ProductListScreen = () => {
     }),
     productColumnHelper.accessor("ActionDeRegister", {
       cell: (info) => (
-        <AppButton isDisabled={!info.row.original.isActive}>
+        <AppButton
+          onClick={() => OnMarkInActive(info.row.original.id)}
+          isDisabled={!info.row.original.isActive}
+        >
           make inactive
         </AppButton>
       ),

@@ -16,5 +16,8 @@ export enum ProductCategory {
   Reagent,
   Consumable,
 }
-
-export default new ApiClient<Product>("/api/product");
+const ProductService = (id = "") => {
+  const url = id ? `/api/product/${id}` : `/api/product`;
+  return new ApiClient<Product>(url);
+};
+export default ProductService;

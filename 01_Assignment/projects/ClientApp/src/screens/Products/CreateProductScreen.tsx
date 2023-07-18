@@ -1,4 +1,4 @@
-import { VStack, Select } from "@chakra-ui/react";
+import { VStack, Select, Alert, AlertIcon } from "@chakra-ui/react";
 import { MdOutlineInventory2 } from "react-icons/md";
 import * as Yup from "yup";
 
@@ -11,7 +11,8 @@ import { Product, ProductCategory } from "../../services/ProductService";
 import AppSelect from "../../components/forms/AppSelect";
 import useCreateProduct from "../../hooks/useCreateProduct";
 import AppErrorMessage from "../../components/forms/AppErrorMessage";
-
+import OkAlert from "../../components/alerts/OkAlert";
+import { useState } from "react";
 interface addProduct {
   name: string;
   globalTradeItemNumber: string;
@@ -41,6 +42,7 @@ const validationSchema = Yup.object().shape({
 
 const CreateProductScreen = () => {
   const createProduct = useCreateProduct();
+  const [isProductCreated, setProductCreated] = useState(false);
 
   const handleSubmit = async (values, actions) => {
     const product: Product = {
@@ -54,6 +56,10 @@ const CreateProductScreen = () => {
     try {
       await createProduct.mutateAsync(product);
       actions.resetForm(initialValues);
+      setProductCreated(true);
+      setTimeout(() => {
+        setProductCreated(false);
+      }, 3000);
     } catch (error) {
       console.log(`error handlesubmit error`);
     }
@@ -72,11 +78,20 @@ const CreateProductScreen = () => {
         Create New Product
       </AppText>
 
-      {createProduct.error && (
-        <AppErrorMessage visible>
-          {createProduct.error?.response?.data}
-        </AppErrorMessage>
+      {isProductCreated && (
+        <Alert status="success">
+          <AlertIcon />
+          New Product Created.
+        </Alert>
       )}
+
+      {createProduct.error && (
+        <Alert status="error">
+          <AlertIcon />
+          Error {createProduct.error?.response?.data}
+        </Alert>
+      )}
+
       <AppForm
         initialValues={initialValues}
         validationSchema={validationSchema}

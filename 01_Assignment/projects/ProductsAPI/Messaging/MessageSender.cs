@@ -28,7 +28,7 @@ namespace ProductsAPI.Messaging
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                throw;
+                
             }
         }
     }
