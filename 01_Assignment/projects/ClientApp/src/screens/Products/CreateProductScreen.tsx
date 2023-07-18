@@ -7,8 +7,10 @@ import * as colors from "../../config/colors";
 import AppForm from "../../components/forms/AppForm";
 import AppFormInput from "../../components/forms/AppFormInput";
 import AppSubmitButton from "../../components/forms/AppSubmitButton";
-import { ProductCategory } from "../../services/ProductService";
+import { Product, ProductCategory } from "../../services/ProductService";
 import AppSelect from "../../components/forms/AppSelect";
+import useCreateProduct from "../../hooks/useCreateProduct";
+import AppErrorMessage from "../../components/forms/AppErrorMessage";
 
 interface addProduct {
   name: string;
@@ -19,44 +21,66 @@ interface addProduct {
   unitOfMeasure: string;
 }
 
+const initialValues: addProduct = {
+  name: "",
+  globalTradeItemNumber: "",
+  materialNumber: "",
+  vendor: "",
+  unitOfMeasure: "",
+  productCategory: "",
+};
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required().min(8).label("Product Name"),
+  globalTradeItemNumber: Yup.string().required().min(8).label("GTIN"),
+  materialNumber: Yup.string().required().min(8).label("Material Number"),
+  vendor: Yup.string().required().min(8).label("Vendor"),
+  productCategory: Yup.string().required().label("Category"),
+  unitOfMeasure: Yup.string().required().label("Unit Of Measure"),
+});
+
 const CreateProductScreen = () => {
-  const initialValues: addProduct = {
-    name: "",
-    globalTradeItemNumber: "",
-    materialNumber: "",
-    vendor: "",
-    unitOfMeasure: "",
-    productCategory: "",
+  const createProduct = useCreateProduct();
+
+  const handleSubmit = async (values, actions) => {
+    const product: Product = {
+      name: values.name,
+      globalTradeItemNumber: values.globalTradeItemNumber,
+      materialNumber: values.materialNumber,
+      productCategory: parseInt(values.productCategory),
+      vendoer: values.vendor,
+      unitOfMeasure: values.unitOfMeasure,
+    };
+    try {
+      await createProduct.mutateAsync(product);
+      actions.resetForm(initialValues);
+    } catch (error) {
+      console.log(`error handlesubmit error`);
+    }
   };
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required().min(8).label("Product Name"),
-    globalTradeItemNumber: Yup.string()
-      .required()
-      .min(8)
-      .label("Product Global Trade Item Number"),
-    materialNumber: Yup.string()
-      .required()
-      .min(8)
-      .label("Product Material Number"),
-    vendor: Yup.string().required().min(8).label("Product Vendor"),
-    productCategory: Yup.string().required().label("Product Category"),
-  });
-
   return (
-    <VStack alignItems="start" width="50vh">
-      <AppText
-        marginLeft={5}
-        fontWeight="bold"
-        color={colors.medium}
-        fontSize="2xl"
-      >
+    <VStack
+      alignItems="start"
+      width="50vh"
+      p={5}
+      borderRadius={5}
+      borderWidth={0.5}
+      borderColor="gray.400"
+    >
+      <AppText fontWeight="bold" color={colors.medium} fontSize="2xl">
         Create New Product
       </AppText>
+
+      {createProduct.error && (
+        <AppErrorMessage visible>
+          {createProduct.error?.response?.data}
+        </AppErrorMessage>
+      )}
       <AppForm
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={() => console.log("")}
+        onSubmit={handleSubmit}
       >
         <AppFormInput
           icon={<MdOutlineInventory2 />}
@@ -80,8 +104,11 @@ const CreateProductScreen = () => {
           name="productCategory"
           header="Select Product Category"
           options={[
-            { label: "Consumable", value: "0" },
-            { label: "Reagents", value: "1" },
+            {
+              label: "Consumable",
+              value: ProductCategory.Consumable.toString(),
+            },
+            { label: "Reagents", value: ProductCategory.Reagent.toString() },
           ]}
         />
         <AppFormInput

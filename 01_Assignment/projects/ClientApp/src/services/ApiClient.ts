@@ -26,18 +26,14 @@ class ApiClient<T> {
   };
 
   post = async (data: T) => {
-    try {
-      console.log(`posting data ${this.endpoint}`);
-      const authToken = AuthStorage.getToken();
-      const res = await axiosInstance.post<T>(this.endpoint, data, {
-        headers: {
-          Authorization: authToken ? `Bearer ${authToken}` : "",
-        },
-      });
-      return res.data;
-    } catch (error) {
-      console.error(error);
-    }
+    console.log(`posting data ${this.endpoint}`);
+    const authToken = AuthStorage.getToken();
+    const res = await axiosInstance.post<T>(this.endpoint, data, {
+      headers: {
+        Authorization: authToken ? `Bearer ${authToken}` : "",
+      },
+    });
+    return res.data;
   };
 
   put = async (data: T) => {

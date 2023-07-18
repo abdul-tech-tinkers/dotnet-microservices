@@ -1,4 +1,3 @@
-import React from "react";
 import useGetProducts from "../../hooks/useGetProducts";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Product, ProductCategory } from "../../services/ProductService";
@@ -6,10 +5,11 @@ import { DataTable } from "../../utility/DataTable";
 import AppButton from "../../components/AppButton";
 import * as colors from "../../config/colors";
 import AppText from "../../components/AppText";
-import { Container, Flex, VStack } from "@chakra-ui/react";
+import { Spinner, VStack } from "@chakra-ui/react";
+import AppErrorMessage from "../../components/forms/AppErrorMessage";
 
 const ProductListScreen = () => {
-  const { data } = useGetProducts();
+  const { data, isLoading, error } = useGetProducts();
   const productColumnHelper = createColumnHelper<Product>();
   const productColums = [
     productColumnHelper.accessor("id", {
@@ -57,6 +57,15 @@ const ProductListScreen = () => {
       header: "De Register",
     }),
   ];
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    const message = `Error Loading Products ${error}`;
+    return <AppErrorMessage visible>{message}</AppErrorMessage>;
+  }
   return (
     <VStack alignItems="start">
       <AppText
