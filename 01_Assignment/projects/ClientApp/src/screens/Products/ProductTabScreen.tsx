@@ -4,11 +4,22 @@ import AppText from "../../components/AppText";
 import CreateProductScreen from "./CreateProductScreen";
 import { useState } from "react";
 import { Product } from "../../services/ProductService";
+import EditProductScreen from "./EditProductScreen";
 
 const ProductTabScreen = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [isEdit, setEdit] = useState(false);
   const [editProduct, setEditProduct] = useState<Product>();
+
+  const setEditProductData = (
+    isEdit: boolean,
+    tabIndex: number,
+    product: Product
+  ) => {
+    setEditProduct(product);
+    setEdit(isEdit);
+    setTabIndex(tabIndex);
+  };
   return (
     <Tabs index={tabIndex} onChange={(index) => setTabIndex(index)}>
       <TabList>
@@ -26,9 +37,7 @@ const ProductTabScreen = () => {
         <TabPanel>
           <ProductListScreen
             OnEditClicked={(product) => {
-              setEditProduct(product);
-              setEdit(true);
-              setTabIndex(2);
+              setEditProductData(true, 2, product);
             }}
           />
         </TabPanel>
@@ -37,7 +46,12 @@ const ProductTabScreen = () => {
         </TabPanel>
         <TabPanel>
           {isEdit && (
-            <CreateProductScreen onProductCreated={() => setTabIndex(0)} />
+            <EditProductScreen
+              product={editProduct}
+              onProductEditCompleted={() => {
+                setEditProductData(false, 0, {} as Product);
+              }}
+            />
           )}
         </TabPanel>
       </TabPanels>
