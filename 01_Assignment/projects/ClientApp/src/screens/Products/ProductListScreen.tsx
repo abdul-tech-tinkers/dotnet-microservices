@@ -10,7 +10,10 @@ import AppErrorMessage from "../../components/forms/AppErrorMessage";
 import useDeRegisterProduct from "../../hooks/useDeRegisterProduct";
 import { useState } from "react";
 
-const ProductListScreen = () => {
+interface props {
+  OnEditClicked: (product: Product) => void;
+}
+const ProductListScreen = ({ OnEditClicked }: props) => {
   const { data, isLoading, error, refetch } = useGetProducts();
   const [productId, setProductId] = useState("");
 
@@ -61,7 +64,14 @@ const ProductListScreen = () => {
     }),
 
     productColumnHelper.accessor("ActionEdit", {
-      cell: (info) => <AppButton color={colors.medium}>Edit</AppButton>,
+      cell: (info) => (
+        <AppButton
+          color={colors.medium}
+          onClick={() => OnEditClicked(info.row.original)}
+        >
+          Edit
+        </AppButton>
+      ),
       header: "Edit",
     }),
     productColumnHelper.accessor("ActionDeRegister", {

@@ -32,7 +32,9 @@ const AppSelect = ({ name, options, header = "Select an option" }: props) => {
       >
         <option value="">{header}</option>
         {options?.map((item) => (
-          <option value={item.value}>{item.label}</option>
+          <option key={item.value} value={item.value}>
+            {item.label}
+          </option>
         ))}
       </Select>
       <AppErrorMessage visible={touched[name]}>{errors[name]}</AppErrorMessage>

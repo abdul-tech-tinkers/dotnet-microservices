@@ -10,9 +10,8 @@ import AppSubmitButton from "../../components/forms/AppSubmitButton";
 import { Product, ProductCategory } from "../../services/ProductService";
 import AppSelect from "../../components/forms/AppSelect";
 import useCreateProduct from "../../hooks/useCreateProduct";
-import AppErrorMessage from "../../components/forms/AppErrorMessage";
-import OkAlert from "../../components/alerts/OkAlert";
 import { useState } from "react";
+
 interface addProduct {
   name: string;
   globalTradeItemNumber: string;
@@ -40,7 +39,10 @@ const validationSchema = Yup.object().shape({
   unitOfMeasure: Yup.string().required().label("Unit Of Measure"),
 });
 
-const CreateProductScreen = () => {
+interface props {
+  onProductCreated: () => void;
+}
+const CreateProductScreen = ({ onProductCreated }: props) => {
   const createProduct = useCreateProduct();
   const [isProductCreated, setProductCreated] = useState(false);
 
@@ -59,6 +61,7 @@ const CreateProductScreen = () => {
       setProductCreated(true);
       setTimeout(() => {
         setProductCreated(false);
+        onProductCreated();
       }, 3000);
     } catch (error) {
       console.log(`error handlesubmit error`);
@@ -89,6 +92,7 @@ const CreateProductScreen = () => {
         <Alert status="error">
           <AlertIcon />
           Error {createProduct.error?.response?.data}
+          {createProduct?.error?.message}
         </Alert>
       )}
 
