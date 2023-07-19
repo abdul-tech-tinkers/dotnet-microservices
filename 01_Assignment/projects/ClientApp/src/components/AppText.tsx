@@ -7,7 +7,7 @@ interface props extends ComponentProps<"Text"> {
   children: React.ReactNode;
 }
 const AppText = ({ children, ...rest }: props) => {
-  return <Text {...rest}>{children}</Text>;
+  return <Text  {...rest}>{children}</Text>;
 };
 
 export default AppText;

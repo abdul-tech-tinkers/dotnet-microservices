@@ -6,6 +6,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  VStack,
 } from "@chakra-ui/react";
 import { MdShoppingCart, MdAccountCircle, MdLogout } from "react-icons/md";
 import AppColorSwitch from "../components/AppColorSwitch";
@@ -14,9 +15,11 @@ import AuthStorage from "../services/auth/AuthStorage";
 import AuthService from "../services/auth/AuthService";
 import { useNavigate } from "react-router-dom";
 import AppIconButton from "../components/AppIconButton";
+import useUserStore from "../stores/UserStore";
 
 const HeaderScreen = () => {
   const navigate = useNavigate();
+  const { name, type } = useUserStore();
   return (
     <Flex justifyContent="space-between" alignItems="center">
       <Box>
@@ -52,6 +55,10 @@ const HeaderScreen = () => {
             </MenuItem>
           </MenuList>
         </Menu>
+        <VStack justify="flex-start" alignItems="flex-start">
+          <AppText fontWeight="bold">{name}</AppText>
+          <AppText fontSize="xs">User Type: {type}</AppText>
+        </VStack>
       </Flex>
     </Flex>
   );

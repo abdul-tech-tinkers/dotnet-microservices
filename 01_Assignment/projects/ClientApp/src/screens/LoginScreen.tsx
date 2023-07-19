@@ -13,6 +13,10 @@ import { User } from "../services/auth/LoginService";
 import AppErrorMessage from "../components/forms/AppErrorMessage";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
+import LoginUserContext, { LoggedInUser } from "../contexts/LoginUserContext";
+import { useContext } from "react";
+import useUserStore from "../stores/UserStore";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(8).label("User Name"),
@@ -24,21 +28,29 @@ const initialValues: User = {
   password: "",
 };
 const LoginScreen = () => {
+  const { setUser } = useUserStore();
   const userLogin = useLogin();
   const authService = AuthService();
   const [loginFailed, setLoginFailed] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
-    const user: User = {
+    const login_request: User = {
       name: values.name,
       password: values.password,
     };
-    const response = await userLogin.mutateAsync(user);
+    const response = await userLogin.mutateAsync(login_request);
 
     if (response) {
       authService.logIn(response.token);
+      const token_decoded = jwtDecode(response.token);
+      const user_decoded: LoggedInUser = {
+        name: token_decoded.sub,
+        type: token_decoded.UserType,
+      };
+
       setLoginFailed(false);
+      setUser(user_decoded.name, user_decoded.type);
       navigate("home");
     } else {
       setLoginFailed(true);
