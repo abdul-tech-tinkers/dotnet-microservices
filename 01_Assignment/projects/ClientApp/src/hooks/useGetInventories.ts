@@ -3,7 +3,7 @@ import InventoryService from "../services/InventoryService";
 
 const useGetInventories = () => {
   return useQuery({
-    queryKey: ["getInventories"],
+    queryKey: ["getAllInventories"],
     queryFn: InventoryService().getAll,
   });
 };

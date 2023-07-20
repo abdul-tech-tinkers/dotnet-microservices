@@ -7,7 +7,9 @@ const useEditProduct = (id: string) => {
   return useMutation<Product, AxiosError, Product>({
     mutationFn: ProductService(id).put,
     onSettled: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["getallproducts"] });
+      await queryClient.invalidateQueries({
+        queryKey: ["getallproducts", "getAllInventories"],
+      });
     },
     onError: (error) => {
       console.log(error.response?.data);

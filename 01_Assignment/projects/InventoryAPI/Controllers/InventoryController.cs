@@ -215,7 +215,7 @@ namespace InventoryAPI.Controllers
                 return BadRequest();
             }
             var ProductItem = await this.productItemsRepository.GetAsync(serializedGlobalTradeItemNumber);
-            if (ProductItem == null)    
+            if (ProductItem == null)
             {
                 return NotFound();
             }
@@ -232,7 +232,7 @@ namespace InventoryAPI.Controllers
             {
                 return BadRequest("invalid ProductItem request");
             }
-            var existingProductItem =await productItemsRepository.GetAsync(productItem.SerializedGlobalTradeItemNumber);
+            var existingProductItem = await productItemsRepository.GetAsync(productItem.SerializedGlobalTradeItemNumber);
             if (existingProductItem != null)
             {
                 return new BadRequestObjectResult($"Product Item with {productItem.SerializedGlobalTradeItemNumber} already exists");

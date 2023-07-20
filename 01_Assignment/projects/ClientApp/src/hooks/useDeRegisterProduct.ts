@@ -7,7 +7,9 @@ const useDeRegisterProduct = (id: string) => {
   return useMutation<Product, AxiosError>({
     mutationFn: ProductService(id).post,
     onSettled: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["getallproducts"] });
+      await queryClient.invalidateQueries({
+        queryKey: ["getallproducts", "getAllInventories"],
+      });
     },
   });
 };

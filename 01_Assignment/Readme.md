@@ -29,7 +29,7 @@
   - Operations Performed on the product include
     - Registration of product - add product to product database.
     - DeRegister product - de register product from the product catalog, the de register should not remove the product from catalog, 
-    - mark the product as active or inactive based on registration or De registration 
+    - mark the product as active or inactive based on registration or De registration with a flag.
     - deregister should also mark the product item as checked out and no more available for usage.
   - Include a service api to support CRUD operation for products **ProductsAPI**
     - Create a product

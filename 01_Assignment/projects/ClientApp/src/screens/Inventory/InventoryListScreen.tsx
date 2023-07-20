@@ -1,39 +1,29 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { CheckoutReason, Inventory } from "../../services/InventoryService";
 import { DataTable } from "../../utility/DataTable";
-import AppButton from "../../components/AppButton";
+
 import * as colors from "../../config/colors";
 import AppText from "../../components/AppText";
 import { Alert, AlertIcon, Spinner, VStack } from "@chakra-ui/react";
-import { useState } from "react";
 import useGetInventories from "../../hooks/useGetInventories";
 import moment from "moment";
-import AppIconButton from "../../components/AppIconButton";
-import { MdOutlineShoppingCart, MdShoppingCart } from "react-icons/md";
-interface props {
-  OnEditClicked: (Inventory: Inventory) => void;
-}
-const InventoryListScreen = ({ OnEditClicked }: props) => {
-  const { data, isLoading, error, refetch } = useGetInventories();
-  //const [InventoryId, setInventoryId] = useState("");
 
-  //const deregister = useDeRegisterInventory(InventoryId);
-  //   const OnMarkInActive = async (id: string) => {
-  //     console.log(`trying to deregister Inventory ${id}`);
-  //     try {
-  //       setInventoryId(id);
-  //       await deregister.mutateAsync();
-  //       await refetch();
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+import InventoryEditOptions from "./InventoryEditOptions";
+interface props {
+  OnItemSelected: (
+    Inventory: Inventory,
+    inventoryOption: InventoryOption
+  ) => void;
+}
+export type InventoryOption = "ADDTOCART" | "EDIT" | "DELETE" | "CHECKOUT";
+const InventoryListScreen = ({ OnItemSelected }: props) => {
+  const { data, isLoading, error } = useGetInventories();
 
   const getDate = (date: Date) => {
     return moment(date).format("YYYY-MM-DD");
   };
   const InventoryColumnHelper = createColumnHelper<Inventory>();
-  const InventoryColums = [
+  const InventoryColumns = [
     InventoryColumnHelper.accessor("id", {
       cell: (info) => info.getValue(),
       header: "Id",
@@ -66,43 +56,15 @@ const InventoryListScreen = ({ OnEditClicked }: props) => {
       cell: (info) => info.getValue(),
       header: "Product Id",
     }),
-    InventoryColumnHelper.accessor("AddToCart", {
+    InventoryColumnHelper.accessor("Options", {
       cell: (info) => (
-        <AppIconButton
-          color={colors.medium}
-          icon={<MdOutlineShoppingCart size={30} />}
-          onClick={() => {
-            console.log("edit");
-          }}
-        ></AppIconButton>
+        <InventoryEditOptions
+          OnMenuItemSelected={(option) =>
+            OnItemSelected(info.row.original, option)
+          }
+        />
       ),
-      header: "Add To Cart",
-    }),
-    InventoryColumnHelper.accessor("EditCheckOut", {
-      cell: (info) => (
-        <AppButton
-          color={colors.medium}
-          onClick={() => {
-            console.log("edit");
-          }}
-        >
-          Check out
-        </AppButton>
-      ),
-      header: "Check Out",
-    }),
-    InventoryColumnHelper.accessor("Delete", {
-      cell: (info) => (
-        <AppButton
-          color={colors.danger}
-          onClick={() => {
-            console.log("Delete");
-          }}
-        >
-          Delete
-        </AppButton>
-      ),
-      header: "Delete",
+      header: "Options",
     }),
   ];
 
@@ -129,7 +91,7 @@ const InventoryListScreen = ({ OnEditClicked }: props) => {
       >
         Inventories
       </AppText>
-      <DataTable columns={InventoryColums} data={data} />
+      <DataTable columns={InventoryColumns} data={data} />
     </VStack>
   );
 };
