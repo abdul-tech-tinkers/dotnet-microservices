@@ -1,6 +1,7 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import React from "react";
 import InventoryListScreen from "./InventoryListScreen";
+import CreateInventoryScreen from "./CreateInventoryScreen";
 
 const InventoryTabScreen = () => {
   return (
@@ -12,9 +13,13 @@ const InventoryTabScreen = () => {
       </TabList>
       <TabPanels>
         <TabPanel>
-          <InventoryListScreen />
+          <InventoryListScreen
+            OnEditClicked={() => console.log("OnEditClicked")}
+          />
         </TabPanel>
-        <TabPanel>Create Inventory</TabPanel>
+        <TabPanel>
+          <CreateInventoryScreen />
+        </TabPanel>
         <TabPanel>Edit Inventory</TabPanel>
       </TabPanels>
     </Tabs>
