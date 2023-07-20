@@ -5,10 +5,10 @@ import { DataTable } from "../../utility/DataTable";
 import AppButton from "../../components/AppButton";
 import * as colors from "../../config/colors";
 import AppText from "../../components/AppText";
-import { Spinner, VStack } from "@chakra-ui/react";
-import AppErrorMessage from "../../components/forms/AppErrorMessage";
+import { Alert, AlertIcon, Spinner, VStack } from "@chakra-ui/react";
 import useDeRegisterProduct from "../../hooks/useDeRegisterProduct";
 import { useState } from "react";
+import useUserStore from "../../stores/UserStore";
 
 interface props {
   OnEditClicked: (product: Product) => void;
@@ -16,7 +16,7 @@ interface props {
 const ProductListScreen = ({ OnEditClicked }: props) => {
   const { data, isLoading, error, refetch } = useGetProducts();
   const [productId, setProductId] = useState("");
-
+  const { type } = useUserStore();
   const deregister = useDeRegisterProduct(productId);
   const OnMarkInActive = async (id: string) => {
     console.log(`trying to deregister product ${id}`);
@@ -62,30 +62,36 @@ const ProductListScreen = ({ OnEditClicked }: props) => {
       cell: (info) => (info.getValue() === true ? "Active" : "Not Active"),
       header: "Status",
     }),
-
-    productColumnHelper.accessor("ActionEdit", {
-      cell: (info) => (
-        <AppButton
-          color={colors.medium}
-          onClick={() => OnEditClicked(info.row.original)}
-        >
-          Edit
-        </AppButton>
-      ),
-      header: "Edit",
-    }),
-    productColumnHelper.accessor("ActionDeRegister", {
-      cell: (info) => (
-        <AppButton
-          onClick={() => OnMarkInActive(info.row.original.id)}
-          isDisabled={!info.row.original.isActive}
-        >
-          make inactive
-        </AppButton>
-      ),
-      header: "De Register",
-    }),
   ];
+
+  const editColumn = productColumnHelper.accessor("ActionEdit", {
+    cell: (info) => (
+      <AppButton
+        color={colors.medium}
+        onClick={() => OnEditClicked(info.row.original)}
+      >
+        Edit
+      </AppButton>
+    ),
+    header: "Edit",
+  });
+
+  const deRegisterColumn = productColumnHelper.accessor("ActionDeRegister", {
+    cell: (info) => (
+      <AppButton
+        onClick={() => OnMarkInActive(info.row.original.id)}
+        isDisabled={!info.row.original.isActive}
+      >
+        make inactive
+      </AppButton>
+    ),
+    header: "De Register",
+  });
+
+  if (type === "G0") {
+    productColums.push(editColumn);
+    productColums.push(deRegisterColumn);
+  }
 
   if (isLoading) {
     return <Spinner />;
@@ -93,7 +99,12 @@ const ProductListScreen = ({ OnEditClicked }: props) => {
 
   if (error) {
     const message = `Error Loading Products ${error}`;
-    return <AppErrorMessage visible>{message}</AppErrorMessage>;
+    return (
+      <Alert status="error">
+        <AlertIcon />
+        {message}
+      </Alert>
+    );
   }
   return (
     <VStack alignItems="start">

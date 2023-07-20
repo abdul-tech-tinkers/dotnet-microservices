@@ -12,6 +12,9 @@ import AppSelect from "../../components/forms/AppSelect";
 import useCreateProduct from "../../hooks/useCreateProduct";
 import { useState } from "react";
 import AppButton from "../../components/AppButton";
+import AppCheckBox from "../../components/AppCheckBox";
+import AppFormCheckBox from "../../components/forms/AppFormCheckBox";
+import useEditProduct from "../../hooks/useEditProduct";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(8).label("Product Name"),
@@ -29,27 +32,32 @@ interface props {
 const EditProductScreen = ({ product, onProductEditCompleted }: props) => {
   const initialValues = product;
   console.log(product);
-  const createProduct = useCreateProduct();
+  const editProduct = useEditProduct(product.id);
   const [isProductEdited, setProductEdited] = useState(false);
 
   const handleSubmit = async (values, actions) => {
-    const product: Product = {
+    const edit_product: Product = {
+      id: product.id,
       name: values.name,
       globalTradeItemNumber: values.globalTradeItemNumber,
       materialNumber: values.materialNumber,
       productCategory: parseInt(values.productCategory),
       vendoer: values.vendoer,
       unitOfMeasure: values.unitOfMeasure,
+      isActive: values.isActive,
+      createdDate: product.createdDate,
+      updatedDate: product.updatedDate,
     };
     try {
+      editProduct.mutateAsync(edit_product);
       actions.resetForm(initialValues);
       setProductEdited(true);
       setTimeout(() => {
         setProductEdited(false);
         onProductEditCompleted();
-      }, 3000);
+      }, 2000);
     } catch (error) {
-      console.log(`error handlesubmit error`);
+      console.log(`error handle submit error`);
     }
   };
 
@@ -69,15 +77,15 @@ const EditProductScreen = ({ product, onProductEditCompleted }: props) => {
       {isProductEdited && (
         <Alert status="success">
           <AlertIcon />
-          New Product Created.
+          Product Edit Completed.
         </Alert>
       )}
 
-      {createProduct.error && (
+      {editProduct.error && (
         <Alert status="error">
           <AlertIcon />
-          Error {createProduct.error?.response?.data}
-          {createProduct?.error?.message}
+          Error {editProduct.error?.response?.data}
+          {editProduct?.error?.message}
         </Alert>
       )}
 
@@ -135,6 +143,9 @@ const EditProductScreen = ({ product, onProductEditCompleted }: props) => {
           placeholder="Unit Of Measure"
           type="text"
         />
+        <AppFormCheckBox name="isActive" isChecked={initialValues.isActive}>
+          Active Product
+        </AppFormCheckBox>
         <AppSubmitButton>Update Product</AppSubmitButton>
         <AppButton
           color={colors.medium}

@@ -1,12 +1,23 @@
-import { Tabs, Tab, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
+import {
+  Tabs,
+  Tab,
+  TabList,
+  TabPanels,
+  TabPanel,
+  IconButton,
+} from "@chakra-ui/react";
 import ProductListScreen from "./ProductListScreen";
 import AppText from "../../components/AppText";
 import CreateProductScreen from "./CreateProductScreen";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "../../services/ProductService";
 import EditProductScreen from "./EditProductScreen";
+import { MdClose } from "react-icons/md";
+import AppIconButton from "../../components/AppIconButton";
+import useUserStore from "../../stores/UserStore";
 
 const ProductTabScreen = () => {
+  const { type } = useUserStore();
   const [tabIndex, setTabIndex] = useState(0);
   const [isEdit, setEdit] = useState(false);
   const [editProduct, setEditProduct] = useState<Product>();
@@ -26,10 +37,17 @@ const ProductTabScreen = () => {
         <Tab>
           <AppText>Products</AppText>
         </Tab>
-        <Tab>New Product</Tab>
+        <Tab isDisabled={type !== "G0"}>New Product</Tab>
         {isEdit && (
-          <Tab>
+          <Tab isDisabled={type !== "G0"}>
             <AppText>Edit Product</AppText>
+            <AppIconButton
+              aria_label="close"
+              icon={<MdClose />}
+              onClick={() => {
+                setEditProductData(false, 0, {} as Product);
+              }}
+            />
           </Tab>
         )}
       </TabList>

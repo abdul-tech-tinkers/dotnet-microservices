@@ -39,7 +39,11 @@ class ApiClient<T> {
   put = async (data: T) => {
     console.log(`put data ${this.endpoint}`);
     const authToken = AuthStorage.getToken();
-    const res = await axiosInstance.put<T>(this.endpoint, data);
+    const res = await axiosInstance.put<T>(this.endpoint, data, {
+      headers: {
+        Authorization: authToken ? `Bearer ${authToken}` : "",
+      },
+    });
     return res.data;
   };
 
