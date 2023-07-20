@@ -19,5 +19,5 @@ RUN dotnet publish "CartsAPI.csproj" -c Release -o /app/publish /p:UseAppHost=fa
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENV ConnectionStrings:RedisConnection="172.17.0.3:6379"
+ENV ConnectionStrings:RedisConnection="172.17.0.8:6379"
 ENTRYPOINT ["dotnet", "CartsAPI.dll"]

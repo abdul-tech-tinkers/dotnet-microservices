@@ -19,7 +19,7 @@ export enum CheckoutReason {
   RemovedFromSystem,
 }
 const InventoryService = (url = "") => {
-  const endpoint = url ? `/api/product/${url}` : `/api/product`;
+  const endpoint = url ? `/api/inventory/${url}` : `/api/inventory`;
   return new ApiClient<Inventory>(endpoint);
 };
 export default InventoryService;

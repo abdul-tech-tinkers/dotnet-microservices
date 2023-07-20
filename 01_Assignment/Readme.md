@@ -7,6 +7,7 @@
     - [Cart Management](#cart-management)
     - [UserManagement](#usermanagement)
     - [Tech Stack](#tech-stack)
+    - [Challenges or opportunities for extension](#challenges-or-opportunities-for-extension)
   - [Pending items](#pending-items)
     - [docker commands](#docker-commands)
     - [Scenarios for demo](#scenarios-for-demo)
@@ -86,8 +87,19 @@
  - Redis cache for cart storage
 **Client:**
  - React
- - 
+ - React Query - fetch api and server data state management - retry, reload, 
+ - Zustand - Client state management
+ - React Table
+ - Chakra UI  - reusable component
+ - Formik and Yup, React forms and validation
+ - React secure storage  - store token
+ - React icons
 
+### Challenges or opportunities for extension
+ - configuration - orchestration with multiple micro services - solution can use docker compose or AKS
+ - availability - can be extended and uploaded to cloud services like AWS or Azure or GCP
+ - also can leverage native cloud services like Azure Service bus instead of Rabbit Mq, Azure Sql Server, Azure Functions
+ - e.g when the product is marked inactive we can add the product id to the queue (azure service bus) and an azure function can pickit up and handle inactive product
 
 ## Pending items
   

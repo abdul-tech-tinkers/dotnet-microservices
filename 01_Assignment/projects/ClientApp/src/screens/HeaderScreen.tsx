@@ -31,8 +31,8 @@ const HeaderScreen = () => {
         <AppIconButton
           aria_label="Shopping Cart"
           icon={<MdShoppingCart size={25} />}
-        />
-
+        /> 
+          
         <AppColorSwitch />
 
         <Menu>
