@@ -96,7 +96,6 @@ const CheckoutInventory = ({ inventory, onInventoryUpdated }: Props) => {
           type="text"
         />
         <AppSelect
-          initialValue={inventory?.reasonForCheckout?.toString()}
           name="reasonForCheckout"
           header="Select Reason For Checkout"
           options={[
@@ -121,7 +120,7 @@ const CheckoutInventory = ({ inventory, onInventoryUpdated }: Props) => {
           ]}
         />
 
-        <AppSubmitButton>Update Inventory</AppSubmitButton>
+        <AppSubmitButton>Checkout Inventory</AppSubmitButton>
         <AppButton color={colors.medium} onClick={() => onInventoryUpdated()}>
           Cancel
         </AppButton>

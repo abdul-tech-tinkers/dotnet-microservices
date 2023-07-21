@@ -7,7 +7,6 @@ interface props {
   name: string;
   header: string;
   options: SelectOptions[];
-  initialValue: string | undefined;
 }
 interface SelectOptions {
   value: string;
@@ -23,9 +22,6 @@ const AppSelect = ({
   const { setFieldTouched, setFieldValue, errors, touched, values } =
     useFormikContext();
 
-  if (initialValue) {
-    values[name] = initialValue;
-  }
   const onSelectChanged = async (event) => {
     setFieldTouched(name, true);
     await setFieldValue(name, event.target.value);

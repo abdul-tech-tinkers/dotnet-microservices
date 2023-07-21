@@ -7,6 +7,8 @@
 - delete all cart items
 - implement nested routes for nav bar
 - implement private routing
+- filter product
+- filter inventory
 
 
 

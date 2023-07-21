@@ -8,12 +8,14 @@ import AppIconButton from "../../components/AppIconButton";
 import AppText from "../../components/AppText";
 import EditInventoryScreen from "./EditInventoryScreen";
 import CheckoutInventory from "./CheckoutInventory";
+import useDeleteInventory from "../../hooks/useDeleteInventory";
 
 const InventoryTabScreen = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [isEdit, setEdit] = useState(false);
   const [isCheckOut, setCheckOut] = useState(false);
   const [editInventory, setEditInventory] = useState<Inventory>();
+  const deleteInventory = useDeleteInventory();
   const setEditInventoryData = (
     isEdit: boolean,
     isCheckOut: boolean,
@@ -26,17 +28,27 @@ const InventoryTabScreen = () => {
     setCheckOut(isCheckOut);
   };
 
-  const OnItemSelected = (
+  const DeleteInventoryItem = async () => {
+    const response = confirm(
+      "Are you sure you want to delete inventory " +
+        editInventory?.serializedGlobalTradeItemNumber
+    );
+    if (response) {
+      await deleteInventory.mutateAsync(editInventory?.id);
+    }
+  };
+  const OnItemSelected = async (
     inventory: Inventory,
     inventoryOption: InventoryOption
   ) => {
     console.log(inventory, inventoryOption);
     switch (inventoryOption) {
       case "ADD TO CART":
-        setEditInventoryData(false, false, 0, {} as Inventory);
+        setEditInventoryData(false, false, 0, inventory);
         break;
       case "DELETE":
-        setEditInventoryData(false, false, 0, {} as Inventory);
+        setEditInventoryData(false, false, 0, inventory);
+        await DeleteInventoryItem();
         break;
       case "EDIT":
         setEditInventoryData(true, false, 2, inventory);
