@@ -6,6 +6,8 @@ import { Inventory } from "../../services/InventoryService";
 import { MdClose } from "react-icons/md";
 import AppIconButton from "../../components/AppIconButton";
 import AppText from "../../components/AppText";
+import EditInventoryScreen from "./EditInventoryScreen";
+import CheckoutInventory from "./CheckoutInventory";
 
 const InventoryTabScreen = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -16,7 +18,7 @@ const InventoryTabScreen = () => {
     isEdit: boolean,
     isCheckOut: boolean,
     tabIndex: number,
-    inventory: Inventory
+    inventory: Inventory | undefined
   ) => {
     setEditInventory(inventory);
     setEdit(isEdit);
@@ -40,7 +42,7 @@ const InventoryTabScreen = () => {
         setEditInventoryData(true, false, 2, inventory);
         break;
       case "CHECKOUT":
-        setEditInventoryData(false, true, 2, inventory);
+        setEditInventoryData(false, true, 3, inventory);
         break;
     }
   };
@@ -90,7 +92,22 @@ const InventoryTabScreen = () => {
             }
           />
         </TabPanel>
-        <TabPanel>Edit Inventory</TabPanel>
+        <TabPanel>
+          <EditInventoryScreen
+            inventory={editInventory}
+            onInventoryUpdated={() =>
+              setEditInventoryData(false, false, 0, {} as Inventory)
+            }
+          />
+        </TabPanel>
+        <TabPanel>
+          <CheckoutInventory
+            inventory={editInventory}
+            onInventoryUpdated={() =>
+              setEditInventoryData(false, false, 0, {} as Inventory)
+            }
+          />
+        </TabPanel>
       </TabPanels>
     </Tabs>
   );

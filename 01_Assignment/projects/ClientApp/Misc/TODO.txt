@@ -1,0 +1,32 @@
+- edit inventory
+- delete inventory
+- add inventory to Cart
+- get all Carts
+- cart item indicator with counter
+- delete cart item
+- delete all cart items
+- implement nested routes for nav bar
+- implement private routing
+
+
+
+testing scenarios
+- CRUD Product
+- Product Operation with G0
+- adding item to queue when product is deregister
+- inventory 
+- create inventory
+- CRUD inventory
+- mark obsolete testing 
+- get all cart items
+- remove cart item
+- remove all cart items
+
+demo planning
+demo
+
+
+code with mosh course
+--------------------
+complete the practice with game hub App
+publish the learning on github and linkedin for react hub app
