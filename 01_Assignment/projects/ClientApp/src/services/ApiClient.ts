@@ -58,6 +58,17 @@ class ApiClient<T> {
     });
     return res.data;
   };
+
+  deleteAll = async () => {
+    const authToken = AuthStorage.getToken();
+    console.log(`delete by id id from ApiClientClass ${this.endpoint}`);
+    const res = await axiosInstance.delete<T>(this.endpoint, {
+      headers: {
+        Authorization: authToken ? `Bearer ${authToken}` : "",
+      },
+    });
+    return res.data;
+  };
 }
 
 export default ApiClient;

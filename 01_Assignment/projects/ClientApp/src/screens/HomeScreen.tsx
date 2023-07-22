@@ -5,6 +5,7 @@ import HeaderScreen from "./HeaderScreen";
 import ProductListScreen from "./Products/ProductListScreen";
 import ProductTabScreen from "./Products/ProductTabScreen";
 import InventoryTabScreen from "./Inventory/InventoryTabScreen";
+import CartsScreen from "./Carts/CartsScreen";
 
 const HomeScreen = () => {
   const [selectedMenu, setSelectedMenu] = useState("Dashboard");
@@ -26,7 +27,8 @@ const HomeScreen = () => {
       </GridItem>
       <GridItem area={"Main"}>
         {/* <ProductTabScreen /> */}
-        <InventoryTabScreen />
+        {/* <InventoryTabScreen /> */}
+        <CartsScreen />
       </GridItem>
     </Grid>
   );
