@@ -2,7 +2,7 @@
 - delete inventory
 - add inventory to Cart
 - get all Carts
-- cart item indicator with counter
+- cart item indicator with counter - zustand
 - delete cart item
 - delete all cart items
 - implement nested routes for nav bar

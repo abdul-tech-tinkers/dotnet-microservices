@@ -9,6 +9,8 @@ import AppText from "../../components/AppText";
 import EditInventoryScreen from "./EditInventoryScreen";
 import CheckoutInventory from "./CheckoutInventory";
 import useDeleteInventory from "../../hooks/useDeleteInventory";
+import useCreateCart from "../../hooks/useAddToCart";
+import { Cart } from "../../services/CartService";
 
 const InventoryTabScreen = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -16,6 +18,7 @@ const InventoryTabScreen = () => {
   const [isCheckOut, setCheckOut] = useState(false);
   const [editInventory, setEditInventory] = useState<Inventory>();
   const deleteInventory = useDeleteInventory();
+  const createCart = useCreateCart();
   const setEditInventoryData = (
     isEdit: boolean,
     isCheckOut: boolean,
@@ -29,13 +32,32 @@ const InventoryTabScreen = () => {
   };
 
   const DeleteInventoryItem = async () => {
+    if (!editInventory) {
+      console.error("no inventory selected");
+      return;
+    }
     const response = confirm(
       "Are you sure you want to delete inventory " +
-        editInventory?.serializedGlobalTradeItemNumber
+        editInventory.serializedGlobalTradeItemNumber
     );
     if (response) {
-      await deleteInventory.mutateAsync(editInventory?.id);
+      await deleteInventory.mutateAsync(editInventory.id.toString());
     }
+  };
+
+  const CreateCart = async () => {
+    // if (editInventory) {
+    //   console.error("no inventory selected");
+    //   return;
+    // }
+    const cart: Cart = {
+      productName: editInventory.lot,
+      vendorName: "Siemens DX",
+      quantity: 1,
+      serializedGlobalTradeItemNumber:
+        editInventory.serializedGlobalTradeItemNumber,
+    };
+    await createCart.mutateAsync(cart);
   };
   const OnItemSelected = async (
     inventory: Inventory,
@@ -43,8 +65,9 @@ const InventoryTabScreen = () => {
   ) => {
     console.log(inventory, inventoryOption);
     switch (inventoryOption) {
-      case "ADD TO CART":
+      case "ADDTOCART":
         setEditInventoryData(false, false, 0, inventory);
+        await CreateCart();
         break;
       case "DELETE":
         setEditInventoryData(false, false, 0, inventory);
