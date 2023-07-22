@@ -16,13 +16,13 @@ import AuthService from "../services/auth/AuthService";
 import { useNavigate } from "react-router-dom";
 import AppIconButton from "../components/AppIconButton";
 import useUserStore from "../stores/UserStore";
-import useCartStore from "../stores/CartStore";
+
 import { Link } from "react-router-dom";
 
 const HeaderScreen = () => {
   const navigate = useNavigate();
+  const authService = AuthService();
   const { name, type } = useUserStore();
-  const { count: cartItemCount } = useCartStore();
   return (
     <Flex justifyContent="space-between" alignItems="center">
       <Box>
@@ -61,7 +61,7 @@ const HeaderScreen = () => {
             <MenuItem
               icon={<MdLogout />}
               onClick={() => {
-                AuthService().logOut;
+                authService.logOut();
                 navigate("/");
               }}
             >

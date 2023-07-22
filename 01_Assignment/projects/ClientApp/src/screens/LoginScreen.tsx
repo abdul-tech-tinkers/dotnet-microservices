@@ -10,12 +10,9 @@ import useLogin from "../hooks/useLogin";
 
 import AuthService from "../services/auth/AuthService";
 import { User } from "../services/auth/LoginService";
-import AppErrorMessage from "../components/forms/AppErrorMessage";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import jwtDecode from "jwt-decode";
-import LoginUserContext, { LoggedInUser } from "../contexts/LoginUserContext";
-import { useContext } from "react";
 import useUserStore from "../stores/UserStore";
 
 const validationSchema = Yup.object().shape({
@@ -28,7 +25,6 @@ const initialValues: User = {
   password: "",
 };
 const LoginScreen = () => {
-  const { setUser } = useUserStore();
   const userLogin = useLogin();
   const authService = AuthService();
   const [loginFailed, setLoginFailed] = useState<boolean>(false);
@@ -44,14 +40,8 @@ const LoginScreen = () => {
 
       if (response) {
         authService.logIn(response.token);
-        const token_decoded = jwtDecode(response.token);
-        const user_decoded: LoggedInUser = {
-          name: token_decoded.sub,
-          type: token_decoded.UserType,
-        };
 
         setLoginFailed(false);
-        setUser(user_decoded.name, user_decoded.type);
         navigate("home");
       } else {
         setLoginFailed(true);

@@ -49,10 +49,8 @@ const NavigationScreen = ({ onSelected }: props) => {
         <Image src={logo} />
       </Center>
       {menuItems?.map((menuItem) => (
-        <Link to={menuItem.link}>
-          {" "}
+        <Link key={menuItem.link} to={menuItem.link}>
           <AppMenuItem
-            key={menuItem.text}
             icon={menuItem.icon}
             text={menuItem.text}
             selected={selectedMenu === menuItem.text ? true : false}
