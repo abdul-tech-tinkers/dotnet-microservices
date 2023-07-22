@@ -2,13 +2,19 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import React, { useState } from "react";
 import NavigationScreen from "./NavigationScreen";
 import HeaderScreen from "./HeaderScreen";
-import ProductListScreen from "./Products/ProductListScreen";
-import ProductTabScreen from "./Products/ProductTabScreen";
-import InventoryTabScreen from "./Inventory/InventoryTabScreen";
+import { Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
 import CartsScreen from "./Carts/CartsScreen";
+import useUserStore from "../stores/UserStore";
 
 const HomeScreen = () => {
   const [selectedMenu, setSelectedMenu] = useState("Dashboard");
+  const { name } = useUserStore();
+
+  if (!name || name == "") {
+    return <Navigate to="/" />;
+  }
   return (
     <Grid
       minH="100vh"
@@ -26,9 +32,7 @@ const HomeScreen = () => {
         <NavigationScreen onSelected={(item) => setSelectedMenu(item)} />
       </GridItem>
       <GridItem area={"Main"}>
-        {/* <ProductTabScreen /> */}
-        {/* <InventoryTabScreen /> */}
-        <CartsScreen />
+        <Outlet />
       </GridItem>
     </Grid>
   );

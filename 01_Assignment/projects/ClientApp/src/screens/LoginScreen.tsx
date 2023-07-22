@@ -1,5 +1,5 @@
 import { MdPerson2, MdOutlineLock } from "react-icons/md";
-import { Box, Flex, Spinner } from "@chakra-ui/react";
+import { Alert, AlertIcon, Box, Flex, Spinner } from "@chakra-ui/react";
 import * as Yup from "yup";
 
 import AppForm from "../components/forms/AppForm";
@@ -35,24 +35,29 @@ const LoginScreen = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (values, actions) => {
-    const login_request: User = {
-      name: values.name,
-      password: values.password,
-    };
-    const response = await userLogin.mutateAsync(login_request);
-
-    if (response) {
-      authService.logIn(response.token);
-      const token_decoded = jwtDecode(response.token);
-      const user_decoded: LoggedInUser = {
-        name: token_decoded.sub,
-        type: token_decoded.UserType,
+    try {
+      const login_request: User = {
+        name: values.name,
+        password: values.password,
       };
+      const response = await userLogin.mutateAsync(login_request);
 
-      setLoginFailed(false);
-      setUser(user_decoded.name, user_decoded.type);
-      navigate("home");
-    } else {
+      if (response) {
+        authService.logIn(response.token);
+        const token_decoded = jwtDecode(response.token);
+        const user_decoded: LoggedInUser = {
+          name: token_decoded.sub,
+          type: token_decoded.UserType,
+        };
+
+        setLoginFailed(false);
+        setUser(user_decoded.name, user_decoded.type);
+        navigate("home");
+      } else {
+        setLoginFailed(true);
+        actions.resetForm(initialValues);
+      }
+    } catch {
       setLoginFailed(true);
       actions.resetForm(initialValues);
     }
@@ -67,6 +72,13 @@ const LoginScreen = () => {
           validationSchema={validationSchema}
         >
           <AppText fontSize="2xl">Siemens Operator Login</AppText>
+          {loginFailed && (
+            <Alert status="error">
+              <AlertIcon />
+              Invalid Login, Please retry.
+            </Alert>
+          )}
+
           <AppFormInput
             placeholder="User Name"
             name="name"
@@ -79,9 +91,7 @@ const LoginScreen = () => {
             type="password"
             icon={<MdOutlineLock />}
           ></AppFormInput>
-          <AppErrorMessage visible={loginFailed}>
-            Invalid Login, Please retry.
-          </AppErrorMessage>
+
           <AppSubmitButton
             isLoading={userLogin.isLoading}
             loadingText="Logging In"

@@ -13,13 +13,16 @@ import useGetCarts from "../../hooks/useGetCarts";
 import AppButton from "../../components/AppButton";
 import useDeleteCartItem from "../../hooks/useDeleteCartItem";
 import useDeleteAllCartItems from "../../hooks/useDeleteAllCartItems";
+import useUserStore from "../../stores/UserStore";
+import useCartStore from "../../stores/CartStore";
 
 const CartsScreen = () => {
-  const { data, isLoading, error } = useGetCarts();
+  const { data, isLoading, error, refetch } = useGetCarts();
 
   const removeCartItem = useDeleteCartItem();
   const removeAllCartItems = useDeleteAllCartItems();
   const [isRemoved, setIsRemoved] = useState(false);
+  const { setCount } = useCartStore();
 
   const deleteAllCartItems = async () => {
     await removeAllCartItems.mutateAsync();
@@ -27,6 +30,7 @@ const CartsScreen = () => {
     setTimeout(() => {
       setIsRemoved(false);
     }, 800);
+    await updateCartStore();
   };
   const deleteCartItem = async (cart: Cart) => {
     await removeCartItem.mutateAsync(cart?.serializedGlobalTradeItemNumber);
@@ -34,6 +38,12 @@ const CartsScreen = () => {
     setTimeout(() => {
       setIsRemoved(false);
     }, 800);
+    await updateCartStore();
+  };
+
+  const updateCartStore = async () => {
+    await refetch();
+    setCount(data?.length);
   };
 
   const productColumnHelper = createColumnHelper<Cart>();

@@ -11,15 +11,18 @@ import {
 import { MdShoppingCart, MdAccountCircle, MdLogout } from "react-icons/md";
 import AppColorSwitch from "../components/AppColorSwitch";
 import AppText from "../components/AppText";
-import AuthStorage from "../services/auth/AuthStorage";
+
 import AuthService from "../services/auth/AuthService";
 import { useNavigate } from "react-router-dom";
 import AppIconButton from "../components/AppIconButton";
 import useUserStore from "../stores/UserStore";
+import useCartStore from "../stores/CartStore";
+import { Link } from "react-router-dom";
 
 const HeaderScreen = () => {
   const navigate = useNavigate();
   const { name, type } = useUserStore();
+  const { count: cartItemCount } = useCartStore();
   return (
     <Flex justifyContent="space-between" alignItems="center">
       <Box>
@@ -28,11 +31,22 @@ const HeaderScreen = () => {
         </AppText>
       </Box>
       <Flex alignItems="center" mr={2} mt={2}>
-        <AppIconButton
-          aria_label="Shopping Cart"
-          icon={<MdShoppingCart size={25} />}
-        /> 
-          
+        <Flex align="center">
+          <Link to="carts">
+            <AppIconButton
+              aria_label="Shopping Cart"
+              icon={<MdShoppingCart size={25} />}
+            />
+          </Link>
+          {/* <Box>
+            {cartItemCount > 0 && (
+              <AppText fontSize="sm" fontWeight="bold">
+                {cartItemCount}
+              </AppText>
+            )}
+          </Box> */}
+        </Flex>
+
         <AppColorSwitch />
 
         <Menu>

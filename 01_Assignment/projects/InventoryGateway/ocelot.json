@@ -155,7 +155,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.4",
+          "Host": "172.17.0.5",
           "Port": 80
         }
       ]
@@ -167,7 +167,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "172.17.0.4",
+          "Host": "172.17.0.5",
           "Port": 80
         }
       ]

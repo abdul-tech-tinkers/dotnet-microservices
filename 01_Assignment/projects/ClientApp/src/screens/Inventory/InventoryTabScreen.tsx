@@ -23,6 +23,7 @@ const InventoryTabScreen = () => {
   const deleteInventory = useDeleteInventory();
   const createCart = useCreateCart();
   const { setCount } = useCartStore();
+  const { data: carts, refetch } = useGetCarts();
   const setEditInventoryData = (
     isEdit: boolean,
     isCheckOut: boolean,
@@ -50,10 +51,10 @@ const InventoryTabScreen = () => {
   };
 
   const CreateCart = async () => {
-    // if (editInventory) {
-    //   console.error("no inventory selected");
-    //   return;
-    // }
+    if (!editInventory?.lot) {
+      console.error("no inventory selected");
+      return;
+    }
     const cart: Cart = {
       productName: editInventory.lot,
       vendorName: "Siemens DX",
@@ -62,7 +63,8 @@ const InventoryTabScreen = () => {
         editInventory.serializedGlobalTradeItemNumber,
     };
     await createCart.mutateAsync(cart);
-    const { data: carts } = useGetCarts();
+    await refetch();
+    console.log(carts?.length);
     if (carts) setCount(carts?.length);
   };
   const OnItemSelected = async (
