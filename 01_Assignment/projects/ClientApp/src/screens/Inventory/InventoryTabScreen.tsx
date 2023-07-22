@@ -11,6 +11,9 @@ import CheckoutInventory from "./CheckoutInventory";
 import useDeleteInventory from "../../hooks/useDeleteInventory";
 import useCreateCart from "../../hooks/useAddToCart";
 import { Cart } from "../../services/CartService";
+import useGetCarts from "../../hooks/useGetCarts";
+import useUserStore from "../../stores/UserStore";
+import useCartStore from "../../stores/CartStore";
 
 const InventoryTabScreen = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -19,6 +22,7 @@ const InventoryTabScreen = () => {
   const [editInventory, setEditInventory] = useState<Inventory>();
   const deleteInventory = useDeleteInventory();
   const createCart = useCreateCart();
+  const { setCount } = useCartStore();
   const setEditInventoryData = (
     isEdit: boolean,
     isCheckOut: boolean,
@@ -58,6 +62,8 @@ const InventoryTabScreen = () => {
         editInventory.serializedGlobalTradeItemNumber,
     };
     await createCart.mutateAsync(cart);
+    const { data: carts } = useGetCarts();
+    if (carts) setCount(carts?.length);
   };
   const OnItemSelected = async (
     inventory: Inventory,

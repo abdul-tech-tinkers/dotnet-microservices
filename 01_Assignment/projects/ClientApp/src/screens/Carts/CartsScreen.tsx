@@ -15,7 +15,7 @@ import useDeleteCartItem from "../../hooks/useDeleteCartItem";
 import useDeleteAllCartItems from "../../hooks/useDeleteAllCartItems";
 
 const CartsScreen = () => {
-  const { data, isLoading, error, refetch } = useGetCarts();
+  const { data, isLoading, error } = useGetCarts();
 
   const removeCartItem = useDeleteCartItem();
   const removeAllCartItems = useDeleteAllCartItems();
