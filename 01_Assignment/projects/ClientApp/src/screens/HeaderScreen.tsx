@@ -26,7 +26,7 @@ const HeaderScreen = () => {
   return (
     <Flex justifyContent="space-between" alignItems="center">
       <Box>
-        <AppText fontWeight="bold" px={2} fontSize="24px">
+        <AppText fontWeight="bold" px={2} fontSize="3xl">
           Inventory Management
         </AppText>
       </Box>
