@@ -1,7 +1,7 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { CheckoutReason, Inventory } from "../../services/InventoryService";
 import { DataTable } from "../../utility/DataTable";
-
+import { useState } from "react";
 import * as colors from "../../config/colors";
 import AppText from "../../components/AppText";
 import { Alert, AlertIcon, Spinner, VStack } from "@chakra-ui/react";
@@ -9,6 +9,10 @@ import useGetInventories from "../../hooks/useGetInventories";
 import moment from "moment";
 
 import InventoryEditOptions from "./InventoryEditOptions";
+import FilterInventoryScreen, {
+  InventoryFilter,
+} from "./FilterInventoryScreen";
+import { InventoryFilterFunc } from "../../utility/InventoryFilter";
 interface props {
   OnItemSelected: (
     Inventory: Inventory,
@@ -18,6 +22,9 @@ interface props {
 export type InventoryOption = "ADDTOCART" | "EDIT" | "DELETE" | "CHECKOUT";
 const InventoryListScreen = ({ OnItemSelected }: props) => {
   const { data, isLoading, error } = useGetInventories();
+  const [inventoryFilter, setInventoryFilter] = useState<InventoryFilter>(
+    {} as InventoryFilter
+  );
 
   const getDate = (date: Date) => {
     return moment(date).format("YYYY-MM-DD");
@@ -91,7 +98,15 @@ const InventoryListScreen = ({ OnItemSelected }: props) => {
       >
         Inventories
       </AppText>
-      <DataTable columns={InventoryColumns} data={data} />
+      <FilterInventoryScreen
+        onFilter={(filter) => {
+          setInventoryFilter(filter);
+        }}
+      />
+      <DataTable
+        columns={InventoryColumns}
+        data={InventoryFilterFunc(data, inventoryFilter)}
+      />
     </VStack>
   );
 };

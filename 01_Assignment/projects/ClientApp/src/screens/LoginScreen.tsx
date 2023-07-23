@@ -55,7 +55,7 @@ const LoginScreen = () => {
 
   return (
     <Flex h="100vh" justifyContent="center" alignItems="center">
-      <Box w={350} h={325} rounded="md" borderWidth={1} borderRadius="lg" p={5}>
+      <Box w={350} h={250} rounded="md" borderWidth={1} borderRadius="lg" p={5}>
         <AppForm
           initialValues={initialValues}
           onSubmit={handleSubmit}
