@@ -68,7 +68,7 @@ const EditInventoryScreen = ({ inventory, onInventoryUpdated }: props) => {
       borderColor="gray.400"
     >
       <AppText fontWeight="bold" color={colors.medium} fontSize="2xl">
-        Create New Inventory
+        Edit Inventory
       </AppText>
 
       {isInventoryUpdated && (

@@ -12,6 +12,7 @@
     - [docker commands](#docker-commands)
     - [Scenarios for demo](#scenarios-for-demo)
     - [Reference](#reference)
+- [Screen shots](#screen-shots)
 
 # Laboratory Inventory Management for Reagents and Consumables
 ## Requirement Analysis and Design
@@ -142,5 +143,34 @@
   - [Multiple Authentication Scheme](https://medium.com/@lucas.rafael.araujo/asp-net-core-3-1-multiple-authentication-schemes-with-jwt-c860d673a71f)
   - [Adding JWT Authentication & Authorization in ASP.NET Core](https://youtu.be/mgeuh8k3I4g)
   - [Using Redis with ASP.NET Core, and Docker Container for Basket Microservices](https://medium.com/aspnetrun/using-redis-with-asp-net-core-and-docker-container-for-basket-microservices-715ff739186e)
+
+
+
+
+# Screen shots
+
+![Alt text](docs/2023-07-23_14h03_57.png)
+![Alt text](docs/2023-07-23_14h04_01.png)
+![Alt text](docs/2023-07-23_14h04_07.png)
+![Alt text](docs/2023-07-23_14h04_20.png)
+![Alt text](docs/2023-07-23_14h04_36.png)
+![Alt text](docs/2023-07-23_14h04_40.png)
+![Alt text](docs/2023-07-23_14h04_44.png)
+![Alt text](docs/2023-07-23_14h04_49.png)
+![Alt text](docs/2023-07-23_14h04_54.png)
+![Alt text](docs/2023-07-23_14h04_58.png)
+![Alt text](docs/2023-07-23_14h05_23.png)
+![Alt text](docs/2023-07-23_14h06_15.png)
+![Alt text](docs/2023-07-23_14h06_26.png)
+![Alt text](docs/2023-07-23_14h06_36.png)
+![Alt text](docs/2023-07-23_14h06_43.png)
+![Alt text](docs/2023-07-23_14h07_08.png)
+![Alt text](docs/2023-07-23_14h07_12.png)
+![Alt text](docs/2023-07-23_14h07_16.png)
+![Alt text](docs/2023-07-23_14h07_20.png)
+![Alt text](docs/2023-07-23_14h07_27.png)
+![Alt text](docs/2023-07-23_14h07_55.png)
+![Alt text](docs/2023-07-23_14h08_00.png)
+
 
 

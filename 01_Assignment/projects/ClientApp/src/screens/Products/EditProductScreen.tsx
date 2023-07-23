@@ -71,7 +71,7 @@ const EditProductScreen = ({ product, onProductEditCompleted }: props) => {
       borderColor="gray.400"
     >
       <AppText fontWeight="bold" color={colors.medium} fontSize="2xl">
-        Create New Product
+        Edit Product
       </AppText>
 
       {isProductEdited && (
