@@ -8,7 +8,6 @@
     - [UserManagement](#usermanagement)
     - [Tech Stack](#tech-stack)
     - [Challenges or opportunities for extension](#challenges-or-opportunities-for-extension)
-  - [Pending items](#pending-items)
     - [docker commands](#docker-commands)
     - [Scenarios for demo](#scenarios-for-demo)
     - [Reference](#reference)
@@ -86,6 +85,7 @@
  - Entity Framework Core 6
  - RabbitMq for messaging
  - Redis cache for cart storage
+
 **Client:**
  - React
  - React Query - fetch api and server data state management - retry, reload, 
@@ -102,8 +102,7 @@
  - also can leverage native cloud services like Azure Service bus instead of Rabbit Mq, Azure Sql Server, Azure Functions
  - e.g when the product is marked inactive we can add the product id to the queue (azure service bus) and an azure function can pickit up and handle inactive product
 
-## Pending items
-  
+ 
 ### docker commands
 
   ```docker
