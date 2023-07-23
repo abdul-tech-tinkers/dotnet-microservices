@@ -9,12 +9,15 @@ import { Alert, AlertIcon, Spinner, VStack } from "@chakra-ui/react";
 import useDeRegisterProduct from "../../hooks/useDeRegisterProduct";
 import { useState } from "react";
 import useUserStore from "../../stores/UserStore";
+import FilterProductScreen, { ProductFilter } from "./FilterProductScreen";
+import { ProductFilterFunc } from "../../utility/ProductFilter";
 
 interface props {
   OnEditClicked: (product: Product) => void;
 }
 const ProductListScreen = ({ OnEditClicked }: props) => {
   const { data, isLoading, error, refetch } = useGetProducts();
+  const [productFilter, setFilter] = useState<ProductFilter>(null);
   const [productId, setProductId] = useState("");
   const { type } = useUserStore();
   const deregister = useDeRegisterProduct(productId);
@@ -116,7 +119,11 @@ const ProductListScreen = ({ OnEditClicked }: props) => {
       >
         Products
       </AppText>
-      <DataTable columns={productColums} data={data} />
+      <FilterProductScreen onFilter={(filter) => setFilter(filter)} />
+      <DataTable
+        columns={productColums}
+        data={ProductFilterFunc(data, productFilter)}
+      />
     </VStack>
   );
 };

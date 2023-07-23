@@ -15,7 +15,7 @@ const AppFormInput = ({ name, icon, placeholder, type, ...rest }: props) => {
     useFormikContext();
 
   return (
-    <VStack marginY={5} alignItems="start">
+    <VStack marginY={2} alignItems="start">
       <AppInput
         width="100%"
         value={values[name]}

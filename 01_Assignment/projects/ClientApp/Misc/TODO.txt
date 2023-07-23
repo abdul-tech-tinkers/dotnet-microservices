@@ -25,7 +25,8 @@ testing scenarios
 - remove all cart items
 
 demo planning
-demo
+demo - docker
+demo - UI 
 
 
 code with mosh course

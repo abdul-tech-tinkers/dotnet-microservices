@@ -71,7 +71,7 @@ const HeaderScreen = () => {
         </Menu>
         <VStack justify="flex-start" alignItems="flex-start">
           <AppText fontWeight="bold">{name}</AppText>
-          <AppText fontSize="xs">User Type: {type}</AppText>
+          <AppText fontSize="xs" >User Type: {type}</AppText>
         </VStack>
       </Flex>
     </Flex>

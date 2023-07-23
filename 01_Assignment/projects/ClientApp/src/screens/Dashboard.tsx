@@ -41,7 +41,7 @@ const Dashboard = () => {
     );
   }
   return (
-    <SimpleGrid columns={3} spacingX="40px" spacingY="20px" mt={25}>
+    <SimpleGrid columns={3} spacingX="30px" spacingY="30px" mt={25}>
       <Box bg={bgColor} height="350px">
         <VStack>
           <AppText fontSize="125px">
