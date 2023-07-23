@@ -8,7 +8,6 @@ import {
 } from "@chakra-ui/react";
 import AppForm from "../../components/forms/AppForm";
 import { SimpleGrid } from "@chakra-ui/react";
-import AppInput from "../../components/AppInput";
 import { MdTextFormat } from "react-icons/md";
 import AppSubmitButton from "../../components/forms/AppSubmitButton";
 import AppFormCheckBox from "../../components/forms/AppFormCheckBox";

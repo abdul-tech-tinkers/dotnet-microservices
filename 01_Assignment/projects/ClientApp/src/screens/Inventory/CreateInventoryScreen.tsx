@@ -1,5 +1,5 @@
-import { VStack, Alert, AlertIcon } from "@chakra-ui/react";
-import { MdInventory } from "react-icons/md";
+import { VStack, Alert, AlertIcon, Box, HStack } from "@chakra-ui/react";
+import { MdCalendarMonth, MdInventory } from "react-icons/md";
 import * as Yup from "yup";
 
 import AppText from "../../components/AppText";
@@ -10,6 +10,7 @@ import AppSubmitButton from "../../components/forms/AppSubmitButton";
 import { Inventory } from "../../services/InventoryService";
 import { useState } from "react";
 import useCreateInventory from "../../hooks/useCreateInventory";
+import AppFormCalendar from "../../components/forms/AppFormCalendar";
 
 interface addInventory {
   serializedGlobalTradeItemNumber: string;
@@ -44,7 +45,7 @@ interface props {
 const CreateInventoryScreen = ({ onInventoryCreated }: props) => {
   const createInventory = useCreateInventory();
   const [isInventoryCreated, setInventoryCreated] = useState(false);
-
+  const [startDate, setStartDate] = useState(new Date());
   const handleSubmit = async (values, actions) => {
     const Inventory: Inventory = {
       serializedGlobalTradeItemNumber: values.serializedGlobalTradeItemNumber,
@@ -111,12 +112,8 @@ const CreateInventoryScreen = ({ onInventoryCreated }: props) => {
           type="text"
         />
 
-        <AppFormInput
-          icon={<MdInventory />}
-          name="expirationDate"
-          placeholder="Expiration Date"
-          type="text"
-        />
+        <AppFormCalendar name="expirationDate" />
+
         <AppFormInput
           icon={<MdInventory />}
           name="productId"

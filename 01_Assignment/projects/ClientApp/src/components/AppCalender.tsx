@@ -1,13 +1,26 @@
-import React, { useState } from "react";
-import Calendar from "react-calendar";
+import { Box, HStack } from "@chakra-ui/react";
+import { MdCalendarMonth } from "react-icons/md";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const AppCalender = () => {
-  const [value, onChange] = useState(new Date());
-
+interface Props {
+  startDate: Date;
+  onDateSelected: (date: Date) => void;
+}
+const AppCalender = ({ onDateSelected, startDate = new Date() }: Props) => {
   return (
-    <div>
-      <Calendar onChange={onChange} value={value} />
-    </div>
+    <Box borderWidth={1} borderRadius={5} p={1}>
+      <HStack>
+        <Box ml={1.5}>
+          <MdCalendarMonth />
+        </Box>
+        <DatePicker 
+          ml={1}
+          selected={startDate}
+          onChange={(date) => onDateSelected(date)}
+        />
+      </HStack>
+    </Box>
   );
 };
 
