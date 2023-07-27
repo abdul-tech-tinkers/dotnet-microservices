@@ -11,6 +11,7 @@ namespace ProductsAPI.Messaging
         {
             try
             {
+                Console.WriteLine(hostname);
                 var factory = new ConnectionFactory
                 {
                     HostName = hostname,

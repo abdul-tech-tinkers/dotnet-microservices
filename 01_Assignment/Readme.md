@@ -6,6 +6,7 @@
     - [Inventory Management](#inventory-management)
     - [Cart Management](#cart-management)
     - [UserManagement](#usermanagement)
+  - [Client App](#client-app)
     - [Tech Stack](#tech-stack)
     - [Challenges or opportunities for extension](#challenges-or-opportunities-for-extension)
     - [docker commands](#docker-commands)
@@ -35,19 +36,17 @@
     - Create a product
     - Get Active Products
     - Get By Id
-    - Get All - include active and inactive
     - deregister product - update product 
 ### Inventory Management
   - Keeps track of product items in the lab
   - product item life start when we receive it from vendor and `loads into system` i.e check-in of product item
     - can we check-in a product item whose product is already de register in the system
-    - check if the product exist and then check-in the product into inventory.
   - product item can be checked out from the system with various reasons  
     - consumption
     - expiry
     - lost and not found
     - leakage
-  - monitor inventory levels in the system with report and dashboard = PENDING
+  - monitor inventory levels in the system with report and dashboard 
     - daily inventory status
     - expiring today or in next few days
     - expired
@@ -79,12 +78,16 @@
 
   ![](design.png)
 
+## Client App
+- ClientApp using React
+  
 ### Tech Stack
  **Server**
  - Asp.NET core web api using .NET 6
  - Entity Framework Core 6
  - RabbitMq for messaging
  - Redis cache for cart storage
+ - Ocelot for apim
 
 **Client:**
  - React
@@ -99,8 +102,9 @@
 ### Challenges or opportunities for extension
  - configuration - orchestration with multiple micro services - solution can use docker compose or AKS
  - availability - can be extended and uploaded to cloud services like AWS or Azure or GCP
- - also can leverage native cloud services like Azure Service bus instead of Rabbit Mq, Azure Sql Server, Azure Functions
- - e.g when the product is marked inactive we can add the product id to the queue (azure service bus) and an azure function can pickit up and handle inactive product
+ - also can leverage native cloud services like Azure Service bus instead of Rabbit Mq, Azure Sql Server, Azure Functions e.g when the product is marked inactive we can add the product id to the queue (azure service bus) and an azure function can pick it up and handle inactive product
+ - login can be enhanced with some well known auth provider, auth0 or Azure Active Directory etc.
+ - client app can also be hosted as docker service
 
  
 ### docker commands
@@ -128,7 +132,7 @@
 
   ### Scenarios for demo
    - architecture and requirement assumptions
-   - register and logout, what is G0, G1 user privilages
+   - register and logout, what is G0, G1 user privileges
    - product (CRUD)
    - inventory (CRUD) and dashboard api
    - CART list (CRUD)- redis cache
