@@ -4,8 +4,9 @@
     - [Key Features](#key-features)
     - [Products](#products)
     - [Inventory Management](#inventory-management)
-    - [Cart Management](#cart-management)
     - [UserManagement](#usermanagement)
+    - [Cart Management](#cart-management)
+  - [Architecture Diagram](#architecture-diagram)
   - [Client App](#client-app)
     - [Tech Stack](#tech-stack)
     - [Challenges or opportunities for extension](#challenges-or-opportunities-for-extension)
@@ -21,7 +22,34 @@
 1. A catalog of qualified reagent and consumable products to be used in the laboratory.
 2. Tracking of inventory usage through ‘Check-in’ and ‘Check-out’ of product items.
 3. Provide insights into inventory usage through various reports and dashboards.
-4. Track Inventory needs with a cart - cache database
+4. Track Inventory needs with a cart using redis
+5. user access privileges for add/update/deregister product using userType G0, G1 etc.
+
+# Screen shots
+
+![Alt text](docs/2023-07-23_14h03_57.png)
+![Alt text](docs/2023-07-23_14h04_01.png)
+![Alt text](docs/2023-07-23_14h04_07.png)
+![Alt text](docs/2023-07-23_14h04_20.png)
+![Alt text](docs/2023-07-23_14h04_36.png)
+![Alt text](docs/2023-07-23_14h04_40.png)
+![Alt text](docs/2023-07-23_14h04_44.png)
+![Alt text](docs/2023-07-23_14h04_49.png)
+![Alt text](docs/2023-07-23_14h04_54.png)
+![Alt text](docs/2023-07-23_14h04_58.png)
+![Alt text](docs/2023-07-23_14h05_23.png)
+![Alt text](docs/2023-07-23_14h06_15.png)
+![Alt text](docs/2023-07-23_14h06_26.png)
+![Alt text](docs/2023-07-23_14h06_36.png)
+![Alt text](docs/2023-07-23_14h06_43.png)
+![Alt text](docs/2023-07-23_14h07_08.png)
+![Alt text](docs/2023-07-23_14h07_12.png)
+![Alt text](docs/2023-07-23_14h07_16.png)
+![Alt text](docs/2023-07-23_14h07_20.png)
+![Alt text](docs/2023-07-23_14h07_27.png)
+![Alt text](docs/2023-07-23_14h07_55.png)
+![Alt text](docs/2023-07-23_14h08_00.png)
+
 
 ### Products
   - Two categories of products, consumable and reagents, can be differentiated by `productcategory` in database
@@ -42,15 +70,35 @@
   - product item life start when we receive it from vendor and `loads into system` i.e check-in of product item
     - can we check-in a product item whose product is already de register in the system
   - product item can be checked out from the system with various reasons  
+    - none
     - consumption
     - expiry
     - lost and not found
     - leakage
+    - removed from system when product is deregister
   - monitor inventory levels in the system with report and dashboard 
     - daily inventory status
     - expiring today or in next few days
     - expired
     - expired with reason
+  - supported operations
+    - checkin 
+    - checkout
+    - update inventory
+    - report apis
+
+  
+### UserManagement
+  - operator login and logout support 
+  - support token based authentication
+  - GET, Post, PUT and Delete operations of product and product item needs to be authorized with a token
+  - support with simenesinternal - G0 and labmanager user G1
+  - SiemensInternal(G0 user type)has privilege to add product and edit product items
+  - LabManager(G1 user type) can manage product items
+  - both has access to view products and product items
+  - login with name and password
+  - stored in a sql server
+  - both has access to manage CART
 
 ### Cart Management
   - Keep track of the product items that need to be refilled in the system soon.
@@ -63,19 +111,8 @@
     - Product name
     - vendor name 
   - since the cart items are managed on need basis, a simple cache storage like redis can help to have items cached
-  
-### UserManagement
-  - operator login and logout support 
-  - support token based authentication
-  - GET, Post, PUT and Delete operations of product and product item needs to be authorized with a token
-  - support with simenesinternal - G0 and labmanager user G1
-  - SiemensInternal(G0 user type)has privilege to add product and product items
-  - LabManager(G1 user type) can manage product items
-  - both has access to view products and product items
-  - login with name and password
-  - stored in a sql server
-  - both has access to manage CART
 
+## Architecture Diagram
   ![](design.png)
 
 ## Client App
@@ -147,6 +184,12 @@
   - [Adding JWT Authentication & Authorization in ASP.NET Core](https://youtu.be/mgeuh8k3I4g)
   - [Using Redis with ASP.NET Core, and Docker Container for Basket Microservices](https://medium.com/aspnetrun/using-redis-with-asp-net-core-and-docker-container-for-basket-microservices-715ff739186e)
 
+3.	Few references below for further learning.
+•	Microsoft reference implementation with sample code.
+[](https://docs.microsoft.com/en-us/dotnet/architecture/cloud-native/introduce-eshoponcontainers-reference-app)
+o	https://github.com/dotnet-architecture/eShopOnContainers
+•	Microsoft architecture guidance.
+o	https://docs.microsoft.com/en-us/dotnet/architecture/microservices/
 
 
 

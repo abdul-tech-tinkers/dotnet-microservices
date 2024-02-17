@@ -19,5 +19,5 @@ RUN dotnet publish "UsersAPI.csproj" -c Release -o /app/publish /p:UseAppHost=fa
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENV ConnectionStrings:SqlServerConnection="Server=172.17.0.9;Database=inventoryusersdb;User Id=sa;Password=Password@123;"
+ENV ConnectionStrings:SqlServerConnection="Server=172.17.0.4;Database=inventoryusersdb;User Id=sa;Password=Password@123;"
 ENTRYPOINT ["dotnet", "UsersAPI.dll"]

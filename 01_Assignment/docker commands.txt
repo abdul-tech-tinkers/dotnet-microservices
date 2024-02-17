@@ -6,6 +6,15 @@ build carts api
 docker build -t cartsapi:1.0 .
 docker run -p 7471:443 -p 7472:80 cartsapi:1.0
 
+
+-- show is loading while product items is loading...spinner
+-- create submit should reset the form
+-- navigate to products
+
+
 -- get user details from logged in token upon login - set is app context
 - user type and user name
 -cart with items
+
+
+-- screen navigation

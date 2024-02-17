@@ -23,7 +23,6 @@ namespace InventoryAPI.Model
 
         public DateTime CheckInDate { get; set; } = DateTime.Now;
 
-
         public DateTime CheckOutDate { get; set; } = DateTime.MinValue;
 
         public string ProductId { get; set; } // GlobalTradeItemNumber
