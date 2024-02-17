@@ -1,0 +1,7 @@
+architecture and requirement assumptions
+show docker desktop
+register and logout, what is G0, G1 user privileges
+product (CRUD)
+inventory (CRUD) and dashboard api
+CART list (CRUD)- redis cache
+Rabbit MQ demo
