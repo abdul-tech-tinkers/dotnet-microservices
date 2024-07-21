@@ -1,20 +1,22 @@
 
-- [Laboratory Inventory Management for Reagents and Consumables](#laboratory-inventory-management-for-reagents-and-consumables)
-  - [Requirement Analysis and Design](#requirement-analysis-and-design)
-    - [Key Features](#key-features)
-    - [Products](#products)
-    - [Inventory Management](#inventory-management)
-    - [UserManagement](#usermanagement)
-    - [Cart Management](#cart-management)
-  - [Architecture Diagram](#architecture-diagram)
-  - [Client App](#client-app)
-    - [Tech Stack](#tech-stack)
-    - [Challenges or opportunities for extension](#challenges-or-opportunities-for-extension)
-    - [docker commands](#docker-commands)
-    - [Scenarios for demo](#scenarios-for-demo)
-    - [Reference](#reference)
-- [Screen shots](#screen-shots)
-
+<!-- TOC -->
+* [Laboratory Inventory Management for Reagents and Consumables](#laboratory-inventory-management-for-reagents-and-consumables)
+  * [Requirement Analysis and Design](#requirement-analysis-and-design)
+    * [Key Features](#key-features)
+* [Screen shots](#screen-shots)
+    * [Products](#products)
+    * [Inventory Management](#inventory-management)
+    * [UserManagement](#usermanagement)
+    * [Cart Management](#cart-management)
+  * [Architecture Diagram](#architecture-diagram)
+  * [Client App](#client-app)
+    * [Tech Stack](#tech-stack)
+    * [Challenges or opportunities for extension](#challenges-or-opportunities-for-extension)
+    * [docker commands](#docker-commands)
+    * [Scenarios for demo](#scenarios-for-demo)
+    * [Reference](#reference)
+* [Screen shots](#screen-shots-1)
+<!-- TOC -->
 # Laboratory Inventory Management for Reagents and Consumables
 ## Requirement Analysis and Design
 
@@ -190,33 +192,6 @@
 o	https://github.com/dotnet-architecture/eShopOnContainers
 •	Microsoft architecture guidance.
 o	https://docs.microsoft.com/en-us/dotnet/architecture/microservices/
-
-
-
-# Screen shots
-
-![Alt text](docs/2023-07-23_14h03_57.png)
-![Alt text](docs/2023-07-23_14h04_01.png)
-![Alt text](docs/2023-07-23_14h04_07.png)
-![Alt text](docs/2023-07-23_14h04_20.png)
-![Alt text](docs/2023-07-23_14h04_36.png)
-![Alt text](docs/2023-07-23_14h04_40.png)
-![Alt text](docs/2023-07-23_14h04_44.png)
-![Alt text](docs/2023-07-23_14h04_49.png)
-![Alt text](docs/2023-07-23_14h04_54.png)
-![Alt text](docs/2023-07-23_14h04_58.png)
-![Alt text](docs/2023-07-23_14h05_23.png)
-![Alt text](docs/2023-07-23_14h06_15.png)
-![Alt text](docs/2023-07-23_14h06_26.png)
-![Alt text](docs/2023-07-23_14h06_36.png)
-![Alt text](docs/2023-07-23_14h06_43.png)
-![Alt text](docs/2023-07-23_14h07_08.png)
-![Alt text](docs/2023-07-23_14h07_12.png)
-![Alt text](docs/2023-07-23_14h07_16.png)
-![Alt text](docs/2023-07-23_14h07_20.png)
-![Alt text](docs/2023-07-23_14h07_27.png)
-![Alt text](docs/2023-07-23_14h07_55.png)
-![Alt text](docs/2023-07-23_14h08_00.png)
 
 
 
